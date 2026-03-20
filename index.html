@@ -36,12 +36,13 @@
     .nav { position: sticky; top: 0; z-index: 20; backdrop-filter: blur(16px); background: rgba(7,11,22,0.62); border-bottom: 1px solid var(--line); }
     .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 74px; }
     .brand { display: flex; align-items: center; gap: 14px; font-weight: 700; letter-spacing: 0.02em; }
-    .brand-mark { width: 42px; height: 42px; border-radius: 14px; background: linear-gradient(135deg, rgba(213,177,107,0.28), rgba(213,177,107,0.05)); border: 1px solid rgba(213,177,107,0.35); display: grid; place-items: center; position: relative; overflow: hidden; }
+    .brand-mark { width: 34px; height: 34px; border-radius: 10px; background: linear-gradient(135deg, rgba(213,177,107,0.28), rgba(213,177,107,0.05)); border: 1px solid rgba(213,177,107,0.35); display: grid; place-items: center; position: relative; overflow: hidden; }
     .brand-mark::before, .brand-mark::after { content: ""; position: absolute; border: 1px solid rgba(243,209,145,0.55); border-radius: 999px; }
-    .brand-mark::before { width: 22px; height: 22px; }
-    .brand-mark::after { width: 10px; height: 10px; }
+    .brand-mark::before { width: 18px; height: 18px; }
+    .brand-mark::after { width: 8px; height: 8px; }
     .nav-links { display: flex; align-items: center; gap: 22px; color: var(--muted); font-size: 0.95rem; }
     .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 14px 20px; border-radius: 999px; font-weight: 700; border: 1px solid transparent; transition: all .18s ease; cursor: pointer; }
+    .btn-nav { padding: 9px 16px; font-size: 0.85rem; font-weight: 600; }
     .btn:hover { transform: translateY(-1px); }
     .btn-primary { background: linear-gradient(135deg, var(--gold), var(--gold-2)); color: #22170a; box-shadow: 0 14px 40px rgba(213,177,107,0.28); }
     .btn-secondary { background: rgba(255,255,255,0.04); color: var(--text); border-color: var(--line); }
@@ -119,14 +120,14 @@
         <div class="brand-mark"></div>
         <div>
           <div>Continuity Protocol</div>
-          <div class="tiny">Know your next move.</div>
+          <div class="tiny">Know your next move</div>
         </div>
       </a>
       <div class="nav-links">
         <a href="#how-it-works">How it works</a>
         <a href="#modes">Modes</a>
         <a href="#pricing">Pricing</a>
-        <a href="#waitlist" class="btn btn-primary">Join waitlist</a>
+        <a href="#waitlist" class="btn btn-primary btn-nav">Join waitlist</a>
       </div>
     </div>
   </nav>
@@ -136,7 +137,7 @@
       <div class="wrap hero-grid">
         <div>
           <div class="eyebrow eyebrow-alert"><span></span> March 20, 2026 &mdash; Iran declares parks, resorts and tourist zones worldwide as targets</div>
-          <h1>When systems wobble,<br/>your family gets<br/>the next move.</h1>
+          <h1>When systems wobble,<br/>your family gets<br/>the next move</h1>
           <p class="lead">Continuity Protocol is a calm operational layer for people who live between borders. Not more news. Not generic alerts. A household-specific protocol that tells you what changed, why it matters to your family, and what to do if Plan&nbsp;A&nbsp;closes.</p>
           <div class="hero-actions">
             <a href="#waitlist" class="btn btn-primary">Request early access</a>
@@ -211,7 +212,7 @@
     <div class="crisis-bar">
       <div class="wrap">
         <div class="section-head">
-          <h2 style="color: var(--text);">The world proved this product is needed.</h2>
+          <h2 style="color: var(--text);">The world proved this product is needed</h2>
           <p>February 28, 2026: US and Israel strike Iran. Within 48 hours, the Gulf shuts down. Hundreds of thousands stranded. No product told any family what to do.</p>
         </div>
         <div class="crisis-stats">
@@ -237,7 +238,7 @@
     <section id="how-it-works">
       <div class="wrap">
         <div class="section-head">
-          <h2>Not a panic product. A protocol layer.</h2>
+          <h2>Not a panic product. A protocol layer</h2>
           <p>Every competitor either alerts you or evacuates you. Continuity Protocol occupies the missing layer in between: exact household-specific next steps when travel, finance, safety, or infrastructure begin to break down.</p>
         </div>
         <div class="three-up">
@@ -251,7 +252,7 @@
     <section id="modes">
       <div class="wrap">
         <div class="section-head">
-          <h2>Three modes. One calm rhythm.</h2>
+          <h2>Three modes. One calm rhythm</h2>
           <p>Most crisis products live at the extremes: everything is fine or everything is panic. Continuity Protocol is built around the middle zone where decisions actually happen.</p>
         </div>
         <div class="three-up">
@@ -293,7 +294,7 @@
     <section>
       <div class="wrap">
         <div class="section-head">
-          <h2>Useful before the crisis, not only during it.</h2>
+          <h2>Useful before the crisis, not only during it</h2>
           <p>Why keep this on your phone when nothing dramatic happened for three months? Because peacetime utility is the core product, not the afterthought.</p>
         </div>
         <div class="grid-4">
@@ -308,7 +309,7 @@
     <section id="pricing">
       <div class="wrap">
         <div class="section-head">
-          <h2>Simple pricing. Serious product.</h2>
+          <h2>Simple pricing. Serious product</h2>
           <p>Less than one cancelled-flight rebooking fee. B2B2C partnerships with insurers and remote-work platforms coming soon.</p>
         </div>
         <div class="pricing-wrap">
@@ -342,7 +343,7 @@
         <div class="cta">
           <div>
             <div class="eyebrow" style="margin-bottom:14px;"><span></span> Early access</div>
-            <h2 style="margin:0 0 12px; font-size: clamp(2rem, 3vw, 3rem); letter-spacing:-0.03em;">Build your protocol before you need it.</h2>
+            <h2 style="margin:0 0 12px; font-size: clamp(2rem, 3vw, 3rem); letter-spacing:-0.03em;">Build your protocol before you need it</h2>
             <p class="muted" style="margin:0; max-width:680px;">Join the first cohort for internationally mobile families, expats, and cross-border households. Calm product. Serious use case. No fear marketing.</p>
           </div>
           <form style="display:grid; gap:12px; min-width:min(100%, 360px);" onsubmit="return handleSignup(event);">
@@ -360,7 +361,7 @@
   <footer class="footer">
     <div class="wrap">
       <div style="display:flex; justify-content:space-between; gap:18px; flex-wrap:wrap; align-items:flex-start;">
-        <div><strong>Continuity Protocol</strong><br/><span class="muted">Know your next move.</span></div>
+        <div><strong>Continuity Protocol</strong><br/><span class="muted">Know your next move</span></div>
         <div class="micro" style="max-width:720px;">Continuity Protocol is an information and decision-support service for internationally mobile households. It is not insurance, evacuation, medical advice, or a guarantee of route passability. Conditions may differ from available data. Users must verify independently before acting.</div>
       </div>
     </div>

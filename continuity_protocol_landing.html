@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Continuity Protocol — Know your next move</title>
+  <meta name="description" content="A personalized crisis continuity system for internationally mobile families. Calm, operational, household-specific next-step protocols when travel, finance, safety, or infrastructure begin to break down." />
+  <style>
+    :root {
+      --bg: #0b1020;
+      --bg-2: #111831;
+      --panel: rgba(255,255,255,0.06);
+      --panel-2: rgba(255,255,255,0.08);
+      --text: #eef2ff;
+      --muted: #aeb8d4;
+      --line: rgba(255,255,255,0.12);
+      --gold: #d5b16b;
+      --gold-2: #f3d191;
+      --green: #1f8f64;
+      --amber: #d08a15;
+      --red: #b54a4a;
+      --shadow: 0 20px 60px rgba(0,0,0,0.35);
+      --radius: 22px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(213,177,107,0.16), transparent 22%),
+        radial-gradient(circle at right 15% top 20%, rgba(43,91,181,0.18), transparent 28%),
+        linear-gradient(180deg, #09101d 0%, #0b1020 30%, #0d1427 100%);
+      line-height: 1.45;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    .wrap { width: min(var(--max), calc(100% - 32px)); margin: 0 auto; }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(16px);
+      background: rgba(7, 11, 22, 0.62);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      min-height: 74px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(213,177,107,0.28), rgba(213,177,107,0.05));
+      border: 1px solid rgba(213,177,107,0.35);
+      display: grid;
+      place-items: center;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .brand-mark::before,
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      border: 1px solid rgba(243,209,145,0.55);
+      border-radius: 999px;
+    }
+
+    .brand-mark::before { width: 22px; height: 22px; }
+    .brand-mark::after { width: 10px; height: 10px; }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 20px;
+      border-radius: 999px;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      border: 1px solid transparent;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+      cursor: pointer;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--gold), var(--gold-2));
+      color: #22170a;
+      box-shadow: 0 14px 40px rgba(213,177,107,0.28);
+    }
+    .btn-secondary {
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+      border-color: var(--line);
+    }
+
+    .hero {
+      padding: 74px 0 34px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 34px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: #d7def5;
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+    }
+
+    .eyebrow span {
+      width: 8px; height: 8px; border-radius: 50%; background: var(--gold);
+      box-shadow: 0 0 0 5px rgba(213,177,107,0.14);
+    }
+
+    h1 {
+      font-size: clamp(2.9rem, 5vw, 5.5rem);
+      line-height: 0.95;
+      margin: 0 0 20px;
+      letter-spacing: -0.04em;
+    }
+
+    .hero p.lead {
+      font-size: 1.18rem;
+      color: var(--muted);
+      max-width: 680px;
+      margin: 0 0 26px;
+    }
+
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 28px; }
+
+    .proof {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 14px;
+      margin-top: 12px;
+    }
+
+    .proof-card {
+      padding: 18px;
+      border-radius: 18px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+
+    .proof-card strong {
+      display: block;
+      font-size: 1.2rem;
+      margin-bottom: 6px;
+      color: #fff6e4;
+    }
+
+    .panel {
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .device {
+      padding: 18px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .device::before {
+      content: "";
+      position: absolute;
+      inset: -30% auto auto -20%;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(213,177,107,0.14), transparent 60%);
+      pointer-events: none;
+    }
+
+    .screen {
+      border-radius: 26px;
+      background: linear-gradient(180deg, #121a31, #0f1529);
+      border: 1px solid rgba(255,255,255,0.09);
+      padding: 18px;
+      min-height: 640px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .screen-top {
+      display: flex; justify-content: space-between; align-items: center;
+      color: #d7def5; font-size: 0.95rem;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-weight: 700;
+      background: rgba(208,138,21,0.12);
+      color: #ffdca2;
+      border: 1px solid rgba(208,138,21,0.25);
+    }
+
+    .card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      padding: 18px;
+    }
+
+    .card h3, .card h4 { margin: 0 0 8px; }
+    .muted { color: var(--muted); }
+    .tiny { font-size: 0.82rem; color: #c4cde5; }
+
+    .protocol-now {
+      background: linear-gradient(180deg, rgba(208,138,21,0.14), rgba(255,255,255,0.04));
+      border-color: rgba(208,138,21,0.25);
+    }
+
+    .timeline {
+      display: grid;
+      gap: 10px;
+    }
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 78px 1fr;
+      gap: 12px;
+      align-items: start;
+    }
+
+    .time-tag {
+      font-weight: 800;
+      color: #f8ddad;
+      font-size: 0.85rem;
+      letter-spacing: 0.04em;
+    }
+
+    .confidence {
+      display: flex; gap: 10px; flex-wrap: wrap;
+    }
+    .confidence span {
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.04);
+      color: #dbe3fa;
+    }
+
+    section { padding: 42px 0; }
+
+    .section-head {
+      max-width: 720px;
+      margin-bottom: 26px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(2rem, 3vw, 3rem);
+      margin: 0 0 12px;
+      letter-spacing: -0.03em;
+    }
+
+    .section-head p { margin: 0; color: var(--muted); font-size: 1.06rem; }
+
+    .three-up, .two-up, .grid-4 { display: grid; gap: 18px; }
+    .three-up { grid-template-columns: repeat(3, minmax(0,1fr)); }
+    .two-up { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    .grid-4 { grid-template-columns: repeat(4, minmax(0,1fr)); }
+
+    .feature {
+      padding: 22px;
+      border-radius: 22px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      min-height: 190px;
+    }
+    .feature .kicker {
+      font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.14em; color: #f0d198;
+      margin-bottom: 12px;
+    }
+    .feature h3 { font-size: 1.25rem; margin: 0 0 10px; }
+    .feature p { margin: 0; color: var(--muted); }
+
+    .mode {
+      padding: 24px;
+      border-radius: 24px;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      position: relative;
+      overflow: hidden;
+    }
+    .mode::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 6px;
+      background: var(--green);
+    }
+    .mode.amber::before { background: var(--amber); }
+    .mode.red::before { background: var(--red); }
+    .mode h3 { margin: 0 0 10px; font-size: 1.35rem; }
+    .mode p { margin: 0; color: var(--muted); }
+
+    .pricing {
+      padding: 28px;
+      border-radius: 26px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      border: 1px solid var(--line);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .pricing.featured {
+      border-color: rgba(213,177,107,0.35);
+      box-shadow: 0 20px 80px rgba(213,177,107,0.11);
+      transform: translateY(-4px);
+    }
+
+    .price {
+      font-size: 2.6rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+    }
+
+    ul.clean {
+      padding: 0; margin: 0; list-style: none; display: grid; gap: 11px;
+    }
+    ul.clean li {
+      color: var(--muted);
+      padding-left: 22px;
+      position: relative;
+    }
+    ul.clean li::before {
+      content: "•";
+      position: absolute; left: 0; top: -1px; color: var(--gold);
+    }
+
+    .cta {
+      padding: 34px;
+      border-radius: 30px;
+      background: linear-gradient(135deg, rgba(213,177,107,0.13), rgba(23,40,78,0.55));
+      border: 1px solid rgba(213,177,107,0.22);
+      display: grid;
+      grid-template-columns: 1.2fr auto;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .footer {
+      padding: 34px 0 54px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .micro {
+      font-size: 0.82rem;
+      color: #b7c1dc;
+      line-height: 1.55;
+    }
+
+    @media (max-width: 1020px) {
+      .hero-grid, .cta, .two-up, .three-up, .grid-4 { grid-template-columns: 1fr; }
+      .pricing.featured { transform: none; }
+      .screen { min-height: auto; }
+      .nav-links a:not(.btn) { display: none; }
+    }
+
+    @media (max-width: 640px) {
+      h1 { font-size: 2.6rem; }
+      .proof { grid-template-columns: 1fr; }
+      .hero-actions { flex-direction: column; align-items: stretch; }
+      .btn { width: 100%; }
+      .nav-inner { min-height: 68px; }
+      .cta { padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <a href="#top" class="brand">
+        <div class="brand-mark"></div>
+        <div>
+          <div>Continuity Protocol</div>
+          <div class="tiny">Know your next move.</div>
+        </div>
+      </a>
+      <div class="nav-links">
+        <a href="#how-it-works">How it works</a>
+        <a href="#modes">Modes</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#waitlist" class="btn btn-primary">Join waitlist</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow"><span></span> Premium continuity intelligence for internationally mobile families</div>
+          <h1>When systems wobble,<br/>your family gets<br/>the next move.</h1>
+          <p class="lead">Continuity Protocol is a calm operational layer for people who live between borders. Not more news. Not generic alerts. A household-specific protocol that tells you what changed, why it matters, what to prepare next, and what to do if Plan A closes.</p>
+          <div class="hero-actions">
+            <a href="#waitlist" class="btn btn-primary">Request early access</a>
+            <a href="#how-it-works" class="btn btn-secondary">See the protocol flow</a>
+          </div>
+          <div class="proof">
+            <div class="proof-card">
+              <strong>Green / Amber / Red</strong>
+              Quiet readiness, relevant watch mode, and action windows when thresholds are crossed.
+            </div>
+            <div class="proof-card">
+              <strong>3-minute emergency setup</strong>
+              Start with “I need help now” and get a first protocol before the panic spiral takes over.
+            </div>
+            <div class="proof-card">
+              <strong>Advisory, not fantasy</strong>
+              Deterministic logic, confidence labels, and explicit freshness on every recommendation.
+            </div>
+          </div>
+        </div>
+
+        <div class="panel device">
+          <div class="screen">
+            <div class="screen-top">
+              <div>Phu Quoc · Family profile</div>
+              <div class="status-pill">Amber Watch</div>
+            </div>
+
+            <div class="card">
+              <div class="tiny">Household readiness</div>
+              <h3>78 / 100</h3>
+              <div class="muted">Documents strong. Medication continuity incomplete. Route resilience downgraded from strong to medium.</div>
+            </div>
+
+            <div class="card protocol-now">
+              <div class="tiny">Recommended now</div>
+              <h3>Prepare a 24-hour departure posture</h3>
+              <div class="muted">Move passports and children’s essentials into grab-ready status. Confirm second payment method. Save Route B before pricing tightens.</div>
+            </div>
+
+            <div class="card">
+              <div class="tiny">Protocol timeline</div>
+              <div class="timeline">
+                <div class="timeline-item">
+                  <div class="time-tag">NOW</div>
+                  <div>
+                    <strong>Pack continuity bags</strong>
+                    <div class="muted">Passports, meds, chargers, child comfort kit, offline docs.</div>
+                  </div>
+                </div>
+                <div class="timeline-item">
+                  <div class="time-tag">6 HOURS</div>
+                  <div>
+                    <strong>Reserve flexible exit option</strong>
+                    <div class="muted">Hold refundable seats on your top corridor while availability is still liquid.</div>
+                  </div>
+                </div>
+                <div class="timeline-item">
+                  <div class="time-tag">24 HOURS</div>
+                  <div>
+                    <strong>If primary route degrades, switch</strong>
+                    <div class="muted">Activate mainland transfer branch and notify family network.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="tiny">Signal classification</div>
+              <div class="confidence">
+                <span>Confirmed: flight reliability dropped</span>
+                <span>Likely: fuel pressure worsening</span>
+                <span>Emerging: outbound bottlenecks</span>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="tiny">What this is not</div>
+              <div class="muted">Not insurance. Not evacuation. Not medical advice. Advisory only. Verify independently before acting.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="how-it-works">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Not a panic product. A protocol layer.</h2>
+          <p>Every competitor either alerts you that something bad is happening or removes you after things are already severe. Continuity Protocol occupies the missing layer in between: exact household-specific next steps when travel, finance, safety, or infrastructure begin to break down.</p>
+        </div>
+        <div class="three-up">
+          <div class="feature">
+            <div class="kicker">Layer 1</div>
+            <h3>Household profile</h3>
+            <p>Family structure, passports, travel rights, medications, fallback destinations, and the minimum continuity context required to personalize action.</p>
+          </div>
+          <div class="feature">
+            <div class="kicker">Layer 2 + 3</div>
+            <h3>Location + shock detection</h3>
+            <p>Your current corridor, nearest usable exit nodes, and live signals across flights, conflicts, disasters, telecom issues, and route stress.</p>
+          </div>
+          <div class="feature">
+            <div class="kicker">Layer 4 + 5</div>
+            <h3>Protocol + continuity</h3>
+            <p>Do this now. Do this in 6 hours. Do this in 24 hours. If A closes, switch to B. Keep docs and family status ready even when the network degrades.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="modes">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Three modes. One calm rhythm.</h2>
+          <p>Most crisis products live at the extremes: either everything is fine or everything is panic. Continuity Protocol is built around the middle zone where decisions actually happen.</p>
+        </div>
+        <div class="three-up">
+          <div class="mode">
+            <h3>Green — Peacetime</h3>
+            <p>Readiness dashboard, document expiry tracking, route resilience, quiet signals, and family drills. The app earns its keep on a normal Tuesday.</p>
+          </div>
+          <div class="mode amber">
+            <h3>Amber — Watch</h3>
+            <p>Something relevant changed. You get the exact implications for your household and what to prepare in the next 24 hours. No theatrics. Just preparation.</p>
+          </div>
+          <div class="mode red">
+            <h3>Red — Protocol Active</h3>
+            <p>Threshold crossed. Now / 6 hours / 24 hours. Fallback branches. Family notification. Offline access. Confidence and freshness on every card.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap two-up">
+        <div class="panel" style="padding:28px;">
+          <div class="section-head" style="margin-bottom:18px;">
+            <h2 style="font-size:2rem;">Built for people who live between borders</h2>
+            <p>Expat professionals in the Gulf. Digital nomads in Southeast Asia. Retirees abroad. Cross-border families with multiple passports and multiple points of fragility.</p>
+          </div>
+          <ul class="clean">
+            <li>English-speaking, smartphone-native, internationally mobile households</li>
+            <li>People already paying for travel insurance, relocation friction, or premium emergency workarounds</li>
+            <li>Families who do not need more headlines — they need their own next-step protocol</li>
+          </ul>
+        </div>
+        <div class="panel" style="padding:28px;">
+          <div class="section-head" style="margin-bottom:18px;">
+            <h2 style="font-size:2rem;">What we never promise</h2>
+            <p>This is an information and decision-support service. It is not evacuation, not insurance, not medical advice, and not a guarantee that any route or border is passable in the last mile.</p>
+          </div>
+          <ul class="clean">
+            <li>Advisory only. Conditions may differ from available data.</li>
+            <li>Every protocol is labeled with confidence and freshness.</li>
+            <li>No stored banking passwords, payment credentials, or fantasy claims.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Useful before the crisis, not only during it.</h2>
+          <p>The core retention problem is simple: why keep this on your phone when nothing dramatic happened for three months? The answer is peacetime utility.</p>
+        </div>
+        <div class="grid-4">
+          <div class="feature">
+            <div class="kicker">Normal Tuesday</div>
+            <h3>Readiness score</h3>
+            <p>Know what is broken in your family’s continuity setup before the pressure spike arrives.</p>
+          </div>
+          <div class="feature">
+            <div class="kicker">Routes</div>
+            <h3>Corridor resilience</h3>
+            <p>See whether your fallback paths are strong, softening, or increasingly brittle.</p>
+          </div>
+          <div class="feature">
+            <div class="kicker">Documents</div>
+            <h3>Expiry and access watch</h3>
+            <p>Passports, residency windows, and continuity gaps that quietly become critical.</p>
+          </div>
+          <div class="feature">
+            <div class="kicker">Family</div>
+            <h3>Monthly drill</h3>
+            <p>One minute to confirm who gets called first, where docs live, and whether children’s essentials are ready.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Simple consumer pricing. Partnership upside later.</h2>
+          <p>Low-friction on the surface. Stronger B2B2C distribution behind the scenes. Start with households. Expand through insurers, remote-work platforms, relocation services, and expat ecosystems.</p>
+        </div>
+        <div class="three-up">
+          <div class="pricing">
+            <div class="tiny">Free</div>
+            <div class="price">$0</div>
+            <div class="muted">A simple entry point for readiness and basic continuity hygiene.</div>
+            <ul class="clean">
+              <li>1 profile</li>
+              <li>Basic checklist</li>
+              <li>Limited alerts</li>
+              <li>One saved destination</li>
+            </ul>
+            <a href="#waitlist" class="btn btn-secondary">Get updates</a>
+          </div>
+
+          <div class="pricing featured">
+            <div class="tiny">Core</div>
+            <div class="price">$7<span style="font-size:1rem; font-weight:700; color:var(--muted);"> / month</span></div>
+            <div class="muted">The main product: household-specific protocol guidance with calm, operational clarity.</div>
+            <ul class="clean">
+              <li>Fast emergency onboarding</li>
+              <li>Green / Amber / Red protocol states</li>
+              <li>Offline continuity pack</li>
+              <li>Up to 4 family members</li>
+            </ul>
+            <a href="#waitlist" class="btn btn-primary">Join early access</a>
+          </div>
+
+          <div class="pricing">
+            <div class="tiny">Family+</div>
+            <div class="price">$15<span style="font-size:1rem; font-weight:700; color:var(--muted);"> / month</span></div>
+            <div class="muted">For heavier international complexity and richer family coordination.</div>
+            <ul class="clean">
+              <li>6+ family members</li>
+              <li>Shared status and richer alerts</li>
+              <li>Advanced export</li>
+              <li>Multi-country continuity depth</li>
+            </ul>
+            <a href="#waitlist" class="btn btn-secondary">Talk to us</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="waitlist">
+      <div class="wrap">
+        <div class="cta">
+          <div>
+            <div class="eyebrow" style="margin-bottom:14px;"><span></span> Early access</div>
+            <h2 style="margin:0 0 12px; font-size: clamp(2rem, 3vw, 3rem); letter-spacing:-0.03em;">Build your protocol before you need it.</h2>
+            <p class="muted" style="margin:0; max-width:680px;">Join the first cohort for internationally mobile families, expats, and cross-border households. Calm product. Serious use case. No fear-marketing theater.</p>
+          </div>
+          <form style="display:grid; gap:12px; min-width:min(100%, 360px);">
+            <input type="text" placeholder="Your name" style="padding:15px 16px; border-radius:16px; border:1px solid var(--line); background:rgba(8,12,22,0.6); color:var(--text); font:inherit;" />
+            <input type="email" placeholder="Email address" style="padding:15px 16px; border-radius:16px; border:1px solid var(--line); background:rgba(8,12,22,0.6); color:var(--text); font:inherit;" />
+            <input type="text" placeholder="Current base city (optional)" style="padding:15px 16px; border-radius:16px; border:1px solid var(--line); background:rgba(8,12,22,0.6); color:var(--text); font:inherit;" />
+            <button type="button" class="btn btn-primary">Request early access</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <div style="display:flex; justify-content:space-between; gap:18px; flex-wrap:wrap; align-items:flex-start;">
+        <div>
+          <strong>Continuity Protocol</strong><br/>
+          <span class="muted">Know your next move.</span>
+        </div>
+        <div class="micro" style="max-width:720px;">
+          Continuity Protocol is an information and decision-support service for internationally mobile households. It is not insurance, evacuation, medical advice, or a guarantee of route passability. Conditions may differ from available data. Users must verify independently before acting.
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

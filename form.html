@@ -190,14 +190,16 @@
 
     <div class="form-section" id="form-section">
       <div class="form-card">
-        <form id="protocol-form" onsubmit="return submitForm(event);">
+        <form id="protocol-form" action="https://formspree.io/f/xdawjrdl" method="POST">
+          <input type="hidden" name="_next" value="https://planbefore.app/form.html?success=true" />
+          <input type="hidden" name="_subject" value="New Protocol Request" />
 
           <div class="section-divider">Your contact</div>
 
           <div class="form-row">
             <div class="form-group">
               <label class="form-label">Full name</label>
-              <input type="text" class="form-input" name="name" required placeholder="Steven Alber" />
+              <input type="text" class="form-input" name="name" required placeholder="Jane Smith" />
             </div>
             <div class="form-group">
               <label class="form-label">Email</label>
@@ -377,7 +379,7 @@
       <div class="check-icon">&#10003;</div>
       <h2>We're building your protocol</h2>
       <p>Your personalized family crisis protocol will be delivered to your email within 24 hours.</p>
-      <p style="font-size: 0.9rem;">If your situation is urgent, email us directly at <a href="mailto:protocol@continuityprotocol.io">protocol@continuityprotocol.io</a></p>
+      <p style="font-size: 0.9rem;">If your situation is urgent, email us directly at <a href="mailto:hello@planbefore.app" style="color: var(--gold);">hello@planbefore.app</a></p>
       <p style="margin-top: 24px;"><a href="index.html" style="color: var(--gold);">&larr; Back to Continuity Protocol</a></p>
     </div>
   </div>
@@ -389,29 +391,8 @@
   </footer>
 
   <script>
-  function submitForm(e) {
-    e.preventDefault();
-
-    // Collect form data
-    var form = document.getElementById('protocol-form');
-    var data = new FormData(form);
-    var obj = {};
-    data.forEach(function(val, key) { obj[key] = val; });
-
-    // For now: log to console + show confirmation
-    // TODO: Connect to Formspree, email API, or backend
-    console.log('Protocol request:', JSON.stringify(obj, null, 2));
-
-    // Show confirmation
+  // Show confirmation if returning from Formspree
+  if (window.location.search.indexOf('success=true') !== -1) {
     document.getElementById('form-section').style.display = 'none';
     document.getElementById('confirmation').style.display = 'block';
-    document.querySelector('.steps').innerHTML = '<div class="step" style="opacity:0.5;"><div class="step-num">1</div> Paid</div><div class="step" style="opacity:0.5;"><div class="step-num">2</div> Info sent</div><div class="step active"><div class="step-num">3</div> Protocol incoming</div>';
-
-    // Scroll to top
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-
-    return false;
-  }
-  </script>
-</body>
-</html>
+    document.querySelector('.steps').innerHTML = '<div class="step" style="o

@@ -48,10 +48,12 @@
     .btn-secondary { background: rgba(255,255,255,0.04); color: var(--text); border-color: var(--line); }
     .hero { padding: 74px 0 34px; }
     .hero-grid { display: grid; grid-template-columns: 1.08fr 0.92fr; gap: 34px; align-items: center; }
-    .eyebrow { display: inline-flex; gap: 10px; align-items: center; padding: 8px 12px; border-radius: 999px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); color: #d7def5; font-size: 0.9rem; margin-bottom: 20px; }
-    .eyebrow span { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 5px rgba(213,177,107,0.14); }
+    .eyebrow { display: flex; gap: 10px; align-items: flex-start; padding: 10px 14px; border-radius: 16px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); color: #d7def5; font-size: 0.85rem; margin-bottom: 20px; line-height: 1.4; max-width: 100%; overflow: hidden; }
+    .eyebrow span { width: 8px; height: 8px; min-width: 8px; flex-shrink: 0; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 5px rgba(213,177,107,0.14); margin-top: 4px; }
+    #alert-text { overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; }
     .eyebrow-alert { background: rgba(181,74,74,0.12); border-color: rgba(181,74,74,0.25); color: #ffb8b8; }
-    .eyebrow-alert span { background: var(--red); box-shadow: 0 0 0 5px rgba(181,74,74,0.2); }
+    .eyebrow-alert span { background: var(--red); box-shadow: 0 0 0 5px rgba(181,74,74,0.2); animation: pulse 2s ease-in-out infinite; min-width: 8px; }
+    @keyframes pulse { 0%, 100% { box-shadow: 0 0 0 4px rgba(181,74,74,0.2); } 50% { box-shadow: 0 0 0 8px rgba(181,74,74,0.05); } }
     h1 { font-family: 'EB Garamond', serif; font-size: clamp(2.9rem, 5vw, 5.5rem); line-height: 0.95; margin: 0 0 20px; letter-spacing: -0.04em; }
     .hero p.lead { font-size: 1.18rem; color: var(--muted); max-width: 680px; margin: 0 0 26px; }
     .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 28px; }
@@ -136,7 +138,7 @@
     <section class="hero">
       <div class="wrap hero-grid">
         <div>
-          <div class="eyebrow eyebrow-alert"><span></span> March 20, 2026 &mdash; Iran declares parks, resorts and tourist zones worldwide as targets</div>
+          <div class="eyebrow eyebrow-alert" id="live-alert"><span></span> <span id="alert-text">March 20, 2026 &mdash; Iran declares parks, resorts and tourist zones worldwide as targets</span></div>
           <h1>When systems wobble,<br/>your family gets<br/>the next move</h1>
           <p class="lead">Continuity Protocol is a calm operational layer for people who live between borders. Not more news. Not generic alerts. A household-specific protocol that tells you what changed, why it matters to your family, and what to do if Plan&nbsp;A&nbsp;closes.</p>
           <div class="hero-actions">
@@ -376,6 +378,192 @@
     document.getElementById('email-input').value = '';
     return false;
   }
+
+  // === LIVE ALERT SYSTEM ===
+  // Updates the hero banner with latest crisis headline from GDELT
+  // Runs on page load, refreshes every 60 minutes
+  // Falls back to static text if API fails
+
+  (function() {
+    var alertEl = document.getElementById('alert-text');
+    var CACHE_KEY = 'cp_alert_cache';
+    var CACHE_TTL = 60 * 60 * 1000; // 1 hour in ms
+
+    // European date formatting
+    function getEuroDate() {
+      var opts = { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'Europe/Berlin' };
+      return new Date().toLocaleDateString('en-US', opts);
+    }
+
+    // Short date for display
+    function getShortDate() {
+      var opts = { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'Europe/Berlin' };
+      return new Date().toLocaleDateString('en-US', opts);
+    }
+
+    // Check cache first
+    function getCached() {
+      try {
+        var raw = localStorage.getItem(CACHE_KEY);
+        if (!raw) return null;
+        var cached = JSON.parse(raw);
+        if (Date.now() - cached.timestamp > CACHE_TTL) return null;
+        return cached;
+      } catch(e) { return null; }
+    }
+
+    function setCache(headline, source) {
+      try {
+        localStorage.setItem(CACHE_KEY, JSON.stringify({
+          headline: headline,
+          source: source,
+          timestamp: Date.now()
+        }));
+      } catch(e) {}
+    }
+
+    // Clean up GDELT titles
+    function cleanTitle(title) {
+      if (!title) return null;
+      // Remove source prefix like "BBC News - " or "Reuters | "
+      title = title.replace(/^[^:|\-]+[\-|:]\s*/i, '').trim();
+      // Truncate to reasonable length
+      if (title.length > 80) title = title.substring(0, 77) + '...';
+      // Capitalize first letter
+      title = title.charAt(0).toUpperCase() + title.slice(1);
+      return title;
+    }
+
+    // Score headline relevance to our audience
+    function scoreHeadline(title) {
+      if (!title) return 0;
+      var t = title.toLowerCase();
+      var score = 0;
+      // High relevance keywords
+      var high = ['iran', 'strait of hormuz', 'flight cancel', 'airspace clos', 'evacuati', 'expat', 'stranded', 'resort', 'tourist', 'travel ban', 'border clos', 'fuel price', 'oil price', 'crisis'];
+      var medium = ['middle east', 'gulf', 'sanction', 'missile', 'drone', 'airline', 'fuel', 'conflict', 'war', 'attack', 'embassy', 'displacement', 'refugee', 'siren', 'civil defense'];
+      var low = ['travel', 'safety', 'security', 'emergency', 'disaster', 'earthquake', 'flood', 'typhoon', 'cyclone', 'tsunami'];
+
+      high.forEach(function(k) { if (t.indexOf(k) !== -1) score += 3; });
+      medium.forEach(function(k) { if (t.indexOf(k) !== -1) score += 2; });
+      low.forEach(function(k) { if (t.indexOf(k) !== -1) score += 1; });
+
+      return score;
+    }
+
+    // Fetch from GDELT
+    function fetchAlert() {
+      // Check cache first
+      var cached = getCached();
+      if (cached) {
+        updateBanner(cached.headline);
+        return;
+      }
+
+      // GDELT DOC 2.0 API - free, no key, supports CORS
+      var queries = [
+        'Iran crisis travel flight',
+        'Middle East conflict evacuation expat',
+        'global crisis travel disruption 2026'
+      ];
+      var q = encodeURIComponent(queries[0]);
+      var url = 'https://api.gdeltproject.org/api/v2/doc/doc?query=' + q +
+                '&mode=ArtList&maxrecords=10&format=json&sort=DateDesc&timespan=3d';
+
+      var xhr = new XMLHttpRequest();
+      xhr.timeout = 8000;
+      xhr.open('GET', url, true);
+
+      xhr.onload = function() {
+        try {
+          var data = JSON.parse(xhr.responseText);
+          if (data && data.articles && data.articles.length > 0) {
+            // Score and rank headlines
+            var scored = data.articles.map(function(a) {
+              return { title: a.title, score: scoreHeadline(a.title), url: a.url };
+            }).sort(function(a, b) { return b.score - a.score; });
+
+            // Pick the best one with score > 2
+            var best = scored.find(function(s) { return s.score > 2; });
+            if (best) {
+              var clean = cleanTitle(best.title);
+              if (clean && clean.length > 20) {
+                setCache(clean);
+                updateBanner(clean);
+                return;
+              }
+            }
+          }
+          // No good result - try second query
+          fetchFallbackQuery();
+        } catch(e) {
+          fetchFallbackQuery();
+        }
+      };
+
+      xhr.onerror = function() { useFallback(); };
+      xhr.ontimeout = function() { useFallback(); };
+      xhr.send();
+    }
+
+    function fetchFallbackQuery() {
+      var q = encodeURIComponent('flight cancellation OR border closure OR travel crisis OR oil price surge');
+      var url = 'https://api.gdeltproject.org/api/v2/doc/doc?query=' + q +
+                '&mode=ArtList&maxrecords=5&format=json&sort=DateDesc&timespan=7d';
+
+      var xhr = new XMLHttpRequest();
+      xhr.timeout = 6000;
+      xhr.open('GET', url, true);
+
+      xhr.onload = function() {
+        try {
+          var data = JSON.parse(xhr.responseText);
+          if (data && data.articles && data.articles.length > 0) {
+            var best = data.articles[0];
+            var clean = cleanTitle(best.title);
+            if (clean && clean.length > 20) {
+              setCache(clean);
+              updateBanner(clean);
+              return;
+            }
+          }
+          useFallback();
+        } catch(e) {
+          useFallback();
+        }
+      };
+
+      xhr.onerror = function() { useFallback(); };
+      xhr.ontimeout = function() { useFallback(); };
+      xhr.send();
+    }
+
+    // Rotating fallback headlines for when API is down
+    function useFallback() {
+      var fallbacks = [
+        'Iran declares parks, resorts and tourist zones worldwide as targets',
+        '18,000+ flights cancelled as Gulf crisis deepens',
+        'Brent crude surges past $110 as Strait of Hormuz remains disrupted',
+        'Multiple governments evacuating citizens from Gulf states',
+        'SAS cancels 1,000 flights as jet fuel prices double'
+      ];
+      var idx = new Date().getHours() % fallbacks.length;
+      updateBanner(fallbacks[idx]);
+    }
+
+    function updateBanner(headline) {
+      if (!alertEl) return;
+      var date = getShortDate();
+      alertEl.textContent = date + ' \u2014 ' + headline;
+    }
+
+    // Initial fetch
+    fetchAlert();
+
+    // Refresh every 60 minutes
+    setInterval(fetchAlert, 60 * 60 * 1000);
+
+  })();
   </script>
 </body>
 </html>

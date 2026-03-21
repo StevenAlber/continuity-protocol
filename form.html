@@ -5,6 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Continuity Protocol — Build Your Protocol</title>
   <meta name="description" content="Tell us about your family and situation. We'll deliver your personalized crisis protocol within 24 hours." />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://planbefore.app/form.html" />
+  <meta property="og:title" content="Build your protocol — Continuity Protocol" />
+  <meta property="og:description" content="Tell us about your family and situation. We'll deliver your personalized crisis protocol within 24 hours." />
+  <meta property="og:image" content="https://planbefore.app/og-image.png" />
+  <meta property="og:site_name" content="Continuity Protocol" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Build your protocol — Continuity Protocol" />
+  <meta name="twitter:description" content="Tell us about your family and situation. Personalized crisis protocol within 24 hours." />
+  <meta name="twitter:image" content="https://planbefore.app/og-image.png" />
+
+  <link rel="canonical" href="https://planbefore.app/form.html" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
@@ -36,7 +53,7 @@
     /* NAV */
     .nav { position: sticky; top: 0; z-index: 20; backdrop-filter: blur(16px); background: rgba(7,11,22,0.62); border-bottom: 1px solid var(--line); }
     .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 64px; }
-    .brand { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 0.95rem; letter-spacing: 0.02em; }
+    .brand { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 0.95rem; letter-spacing: 0.02em; color: var(--text); }
     .brand-mark { width: 34px; height: 34px; border-radius: 10px; background: linear-gradient(135deg, rgba(213,177,107,0.28), rgba(213,177,107,0.05)); border: 1px solid rgba(213,177,107,0.35); display: grid; place-items: center; position: relative; overflow: hidden; }
     .brand-mark::before, .brand-mark::after { content: ""; position: absolute; border: 1px solid rgba(243,209,145,0.55); border-radius: 999px; }
     .brand-mark::before { width: 18px; height: 18px; }
@@ -58,6 +75,9 @@
     .step-num { width: 28px; height: 28px; border-radius: 50%; background: rgba(213,177,107,0.15); border: 1px solid rgba(213,177,107,0.3); display: grid; place-items: center; font-weight: 700; font-size: 0.8rem; color: var(--gold); }
     .step.active .step-num { background: var(--gold); color: #22170a; }
     .step.active { color: var(--text); font-weight: 500; }
+    .step.done .step-num { background: var(--green); border-color: var(--green); color: #fff; }
+    .step.done { color: var(--muted); }
+    .step.upcoming { opacity: 0.5; }
 
     /* FORM */
     .form-section { padding: 0 0 60px; }
@@ -166,7 +186,7 @@
 <body>
   <nav class="nav">
     <div class="wrap nav-inner">
-      <a href="index.html" class="brand">
+      <a href="./" class="brand">
         <div class="brand-mark"></div>
         <div>
           <div>Continuity Protocol</div>
@@ -182,10 +202,10 @@
       <p>Tell us about your situation. We'll deliver a personalized crisis protocol to your email within 24 hours.</p>
     </div>
 
-    <div class="steps">
-      <div class="step" style="opacity:0.5;"><div class="step-num">1</div> Paid</div>
+    <div class="steps" id="steps-bar">
+      <div class="step done"><div class="step-num">&#10003;</div> Paid</div>
       <div class="step active"><div class="step-num">2</div> Your info</div>
-      <div class="step" style="opacity:0.5;"><div class="step-num">3</div> Protocol delivered</div>
+      <div class="step upcoming"><div class="step-num">3</div> Protocol delivered</div>
     </div>
 
     <div class="form-section" id="form-section">
@@ -195,7 +215,7 @@
           <input type="hidden" name="_subject" value="New Protocol Request" />
 
           <div style="padding: 16px 18px; border-radius: 14px; background: rgba(213,177,107,0.08); border: 1px solid rgba(213,177,107,0.2); margin-bottom: 24px; font-size: 0.88rem; color: var(--muted); line-height: 1.5;">
-            Takes 5-7 minutes. You do not need exact passport numbers, banking credentials, or medical details. We only need enough context to build your protocol.
+            Takes 5–7 minutes. You do not need exact passport numbers, banking credentials, or medical details. We only need enough context to build your protocol.
           </div>
 
           <div class="section-divider">Your contact</div>
@@ -383,8 +403,8 @@
       <div class="check-icon">&#10003;</div>
       <h2>We're building your protocol</h2>
       <p>Your personalized family crisis protocol will be delivered to your email within 24 hours.</p>
-      <p style="font-size: 0.9rem;">If your situation is urgent, email us directly at <a href="mailto:hello@planbefore.app" style="color: var(--gold);">hello@planbefore.app</a></p>
-      <p style="margin-top: 24px;"><a href="index.html" style="color: var(--gold);">&larr; Back to Continuity Protocol</a></p>
+      <p style="font-size: 0.9rem;">If your situation is urgent, email us directly at <a href="mailto:hello@planbefore.app">hello@planbefore.app</a></p>
+      <p style="margin-top: 24px;"><a href="./">&larr; Back to Continuity Protocol</a></p>
     </div>
   </div>
 
@@ -398,9 +418,9 @@
   if (window.location.search.indexOf('success=true') !== -1) {
     document.getElementById('form-section').style.display = 'none';
     document.getElementById('confirmation').style.display = 'block';
-    document.querySelector('.steps').innerHTML =
-      '<div class="step"><div class="step-num">1</div> Paid</div>' +
-      '<div class="step"><div class="step-num">2</div> Info sent</div>' +
+    document.getElementById('steps-bar').innerHTML =
+      '<div class="step done"><div class="step-num">&#10003;</div> Paid</div>' +
+      '<div class="step done"><div class="step-num">&#10003;</div> Info sent</div>' +
       '<div class="step active"><div class="step-num">3</div> Protocol incoming</div>';
   }
   </script>

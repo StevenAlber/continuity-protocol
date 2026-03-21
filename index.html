@@ -370,7 +370,6 @@
   </footer>
 
   <script>
-  // Show subscription confirmation if returning from Formspree
   if (window.location.search.indexOf('subscribed=true') !== -1) {
     var msg = document.getElementById('signup-msg');
     if (msg) {
@@ -379,14 +378,13 @@
     }
   }
 
-  // Live alert ticker
   (function() {
     var alertEl = document.getElementById('alert-text');
     if (!alertEl) return;
     var fallbacks = [
       'Iran declares resorts and tourist zones worldwide as targets',
-      'Gulf air corridors under sustained strain — rerouting continues',
-      'Jet fuel shock pressures Asia-Europe routing',
+      'Gulf air corridors under sustained strain \u2014 rerouting continues',
+      'Jet fuel shock pressures Asia\u2013Europe routing',
       'Evacuation planning accelerates across multiple states',
       'Resort-zone threat rhetoric raises traveler anxiety globally',
       'Multiple airlines extend Gulf route suspensions through April',

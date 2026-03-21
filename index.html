@@ -4,7 +4,24 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Continuity Protocol — Know your next move</title>
-  <meta name="description" content="Iran declared resorts worldwide as targets. 18,000 flights cancelled. No product tells your family what to do. Continuity Protocol: personalized crisis protocols for mobile families. From $9/month." />
+  <meta name="description" content="No product tells your family what to do when systems break. Continuity Protocol: personalized crisis protocols for internationally mobile families. Starting at $9." />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://planbefore.app/" />
+  <meta property="og:title" content="Continuity Protocol — Know your next move" />
+  <meta property="og:description" content="Personalized crisis protocols for families who live between borders. Your exit map, timing logic, and fallback branches — built for your exact situation. Starting at $9." />
+  <meta property="og:image" content="https://planbefore.app/og-image.png" />
+  <meta property="og:site_name" content="Continuity Protocol" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Continuity Protocol — Know your next move" />
+  <meta name="twitter:description" content="Personalized crisis protocols for families who live between borders. Starting at $9." />
+  <meta name="twitter:image" content="https://planbefore.app/og-image.png" />
+
+  <link rel="canonical" href="https://planbefore.app/" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
@@ -118,7 +135,7 @@
 <body>
   <nav class="nav">
     <div class="wrap nav-inner">
-      <a href="#top" class="brand">
+      <a href="./" class="brand">
         <div class="brand-mark"></div>
         <div>
           <div>Continuity Protocol</div>
@@ -399,7 +416,10 @@
       fetch('https://api.gdeltproject.org/api/v2/doc/doc?query=' +
         encodeURIComponent('Iran crisis travel flight evacuation') +
         '&mode=ArtList&maxrecords=10&format=json&sort=DateDesc&timespan=3d', {mode:'cors'})
-        .then(function(r) { return r.json(); })
+        .then(function(r) {
+          if (!r.ok) throw new Error('HTTP ' + r.status);
+          return r.json();
+        })
         .then(function(data) {
           if (data && data.articles && data.articles.length > 0) {
             var best = null, bestScore = 0;

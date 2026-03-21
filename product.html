@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Continuity Protocol — What You Get</title>
+  <meta name="description" content="Your personalized crisis protocol delivered in 24 hours. Here's exactly what's inside and why families pay thousands for less." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: rgba(255,255,255,0.06);
+      --text: #eef2ff;
+      --muted: #aeb8d4;
+      --line: rgba(255,255,255,0.12);
+      --gold: #d5b16b;
+      --gold-2: #f3d191;
+      --green: #1f8f64;
+      --amber: #d08a15;
+      --red: #b54a4a;
+      --shadow: 0 20px 60px rgba(0,0,0,0.35);
+      --max: 800px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+      color: var(--text);
+      background: radial-gradient(circle at top left, rgba(213,177,107,0.12), transparent 22%), linear-gradient(180deg, #09101d 0%, #0b1020 30%, #0d1427 100%);
+      line-height: 1.55;
+      min-height: 100vh;
+    }
+    a { color: var(--gold); text-decoration: none; }
+    .wrap { width: min(var(--max), calc(100% - 32px)); margin: 0 auto; }
+
+    .nav { position: sticky; top: 0; z-index: 20; backdrop-filter: blur(16px); background: rgba(7,11,22,0.62); border-bottom: 1px solid var(--line); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 64px; }
+    .brand { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 0.95rem; }
+    .brand-mark { width: 34px; height: 34px; border-radius: 10px; background: linear-gradient(135deg, rgba(213,177,107,0.28), rgba(213,177,107,0.05)); border: 1px solid rgba(213,177,107,0.35); display: grid; place-items: center; position: relative; overflow: hidden; }
+    .brand-mark::before, .brand-mark::after { content: ""; position: absolute; border: 1px solid rgba(243,209,145,0.55); border-radius: 999px; }
+    .brand-mark::before { width: 18px; height: 18px; }
+    .brand-mark::after { width: 8px; height: 8px; }
+    .tiny { font-size: 0.78rem; color: var(--muted); }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 14px 24px; border-radius: 999px; font-weight: 700; border: 1px solid transparent; transition: all .18s ease; cursor: pointer; text-decoration: none; }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary { background: linear-gradient(135deg, var(--gold), var(--gold-2)); color: #22170a; box-shadow: 0 14px 40px rgba(213,177,107,0.28); }
+    .btn-secondary { background: rgba(255,255,255,0.04); color: var(--text); border-color: var(--line); }
+    .btn-big { padding: 18px 32px; font-size: 1.05rem; width: 100%; justify-content: center; }
+
+    .page-header { padding: 48px 0 8px; }
+    .page-header h1 { font-family: 'EB Garamond', serif; font-size: clamp(2.2rem, 4vw, 3rem); line-height: 1.1; margin: 0 0 16px; letter-spacing: -0.03em; }
+    .page-header p { color: var(--muted); font-size: 1.05rem; max-width: 640px; margin: 0 0 8px; }
+
+    .content { padding: 32px 0 60px; }
+
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      border: 1px solid var(--line); border-radius: 24px;
+      padding: 28px 24px; margin-bottom: 20px;
+      box-shadow: var(--shadow);
+    }
+    .card h2 { font-family: 'EB Garamond', serif; font-size: 1.4rem; margin: 0 0 12px; color: var(--gold); }
+    .card h3 { font-size: 1rem; margin: 16px 0 8px; color: var(--text); }
+    .card p { color: var(--muted); margin: 0 0 12px; font-size: 0.95rem; }
+    .card ul { padding: 0; margin: 0 0 12px; list-style: none; }
+    .card ul li { color: var(--muted); padding: 6px 0 6px 22px; position: relative; font-size: 0.93rem; }
+    .card ul li::before { content: "\2192"; position: absolute; left: 0; color: var(--gold); }
+
+    .highlight {
+      background: linear-gradient(135deg, rgba(213,177,107,0.1), rgba(255,255,255,0.04));
+      border-color: rgba(213,177,107,0.25);
+    }
+
+    .comparison {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
+      background: rgba(255,255,255,0.06); border-radius: 18px;
+      overflow: hidden; margin: 20px 0;
+    }
+    .comp-cell { padding: 16px; background: var(--bg); }
+    .comp-cell.header { font-weight: 600; font-size: 0.85rem; color: var(--gold); text-transform: uppercase; letter-spacing: 0.08em; }
+    .comp-cell .amount { font-family: 'EB Garamond', serif; font-size: 1.5rem; font-weight: 700; color: var(--text); }
+    .comp-cell .label { font-size: 0.82rem; color: var(--muted); }
+
+    .divider { height: 1px; background: var(--line); margin: 32px 0; }
+
+    .badge-row { display: flex; gap: 10px; flex-wrap: wrap; margin: 16px 0; }
+    .badge { padding: 6px 12px; border-radius: 999px; font-size: 0.78rem; font-weight: 600; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.04); color: #dbe3fa; }
+    .badge-gold { border-color: rgba(213,177,107,0.3); color: var(--gold); background: rgba(213,177,107,0.08); }
+
+    .cta-section { text-align: center; padding: 40px 0 20px; }
+    .cta-section p { color: var(--muted); font-size: 0.9rem; margin: 12px 0 0; }
+
+    .tier-tabs { display: flex; gap: 8px; margin-bottom: 28px; }
+    .tier-tab { padding: 10px 18px; border-radius: 999px; font-size: 0.9rem; font-weight: 600; cursor: pointer; border: 1px solid var(--line); background: rgba(255,255,255,0.04); color: var(--muted); transition: all 0.2s; text-decoration: none; }
+    .tier-tab.active, .tier-tab:hover { background: rgba(213,177,107,0.12); border-color: rgba(213,177,107,0.3); color: var(--gold); }
+
+    .footer { padding: 32px 0; color: var(--muted); font-size: 0.82rem; text-align: center; }
+
+    @media (max-width: 500px) { .comparison { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <a href="index.html" class="brand">
+        <div class="brand-mark"></div>
+        <div>
+          <div>Continuity Protocol</div>
+          <div class="tiny">Know your next move</div>
+        </div>
+      </a>
+      <a href="index.html" class="tiny" style="color: var(--gold);">&larr; Back to home</a>
+    </div>
+  </nav>
+
+  <div class="wrap">
+    <div class="page-header">
+      <h1>What you get when you order your protocol</h1>
+      <p>Not a generic checklist. Not a PDF template. A crisis continuity protocol built by hand for your family's exact situation, location, and risk profile. Delivered to your email within 24 hours.</p>
+    </div>
+
+    <div class="content">
+
+      <!-- WHAT'S INSIDE -->
+      <div class="card highlight">
+        <h2>Inside your protocol</h2>
+        <p>After payment, you fill a short intake form about your family, location, passports, health, and concerns. We analyze your situation and build a document covering:</p>
+        <ul>
+          <li><strong>Your exit map</strong> — primary and backup routes from your current location, ranked by reliability and speed</li>
+          <li><strong>Your timing logic</strong> — when to monitor, when to prepare, when to move. Not panic, but thresholds.</li>
+          <li><strong>Your transport options</strong> — flights, ferries, land routes, transit hubs. What's realistic for your family.</li>
+          <li><strong>Your document readiness</strong> — passport validity, visa requirements for your destinations, gaps to close now</li>
+          <li><strong>Your financial continuity</strong> — which payment methods work where, backup access, cash recommendations</li>
+          <li><strong>Your medication and health plan</strong> — refill windows, what to carry, where to source abroad</li>
+          <li><strong>Your children's protocol</strong> — what to pack, how to explain, comfort kit, documentation they need</li>
+          <li><strong>Your family communication plan</strong> — who to contact first, fallback channels, check-in protocol</li>
+          <li><strong>Your fallback branches</strong> — if Plan A closes, here is Plan B. If B fails, here is C.</li>
+          <li><strong>Confidence labels</strong> — every recommendation marked as Confirmed, Likely, or Emerging</li>
+        </ul>
+      </div>
+
+      <!-- HOW IT WORKS -->
+      <div class="card">
+        <h2>How it works</h2>
+        <h3>Step 1 — Pay</h3>
+        <p>Choose your plan. Payment is secure through Stripe. Takes 30 seconds.</p>
+        <h3>Step 2 — Tell us your situation</h3>
+        <p>After payment, you fill our intake form: where you live, your family, passports, destinations, health, biggest concern. Takes 5-10 minutes.</p>
+        <h3>Step 3 — We build your protocol</h3>
+        <p>Our team analyzes your situation using real-time data on flights, borders, fuel, conflicts, and route availability. We build your personalized document.</p>
+        <h3>Step 4 — Protocol delivered</h3>
+        <p>Professional PDF delivered to your email within 24 hours. If urgent, contact us and we prioritize.</p>
+      </div>
+
+      <!-- COST COMPARISON -->
+      <div class="card">
+        <h2>What families pay without a plan</h2>
+        <p>When crisis hits and you have no protocol, here is what people actually paid in March 2026:</p>
+        <div class="comparison">
+          <div class="comp-cell header">Without a plan</div>
+          <div class="comp-cell header">With Continuity Protocol</div>
+          <div class="comp-cell">
+            <div class="amount">$1,000+</div>
+            <div class="label">Private taxi Dubai to Oman border</div>
+          </div>
+          <div class="comp-cell">
+            <div class="amount">$9-24</div>
+            <div class="label">Your complete exit protocol</div>
+          </div>
+          <div class="comp-cell">
+            <div class="amount">$3,000-8,000</div>
+            <div class="label">Last-minute one-way flights during crisis</div>
+          </div>
+          <div class="comp-cell">
+            <div class="amount">Pre-planned</div>
+            <div class="label">Routes booked before prices spike</div>
+          </div>
+          <div class="comp-cell">
+            <div class="amount">$20,000+</div>
+            <div class="label">Emergency evacuation from conflict zone (Ukraine 2022 price)</div>
+          </div>
+          <div class="comp-cell">
+            <div class="amount">Ready</div>
+            <div class="label">Exit plan built before the rush</div>
+          </div>
+          <div class="comp-cell">
+            <div class="amount">Hours</div>
+            <div class="label">Searching WhatsApp groups and Reddit in panic</div>
+          </div>
+          <div class="comp-cell">
+            <div class="amount">24h</div>
+            <div class="label">Protocol in your inbox, ready to execute</div>
+          </div>
+        </div>
+        <p style="font-size: 0.85rem; color: var(--muted); font-style: italic;">Sources: Reuters, NYT, Jakarta Post — March 2026 Iran crisis evacuations. Ukraine evacuation costs reported by multiple agencies, 2022.</p>
+      </div>
+
+      <!-- APP COMING -->
+      <div class="card highlight">
+        <h2>You're not just buying a document. You're becoming a founding member.</h2>
+        <p>What you get today is a hand-built crisis protocol. What's coming is much bigger:</p>
+        <ul>
+          <li><strong>Continuity Protocol App</strong> — real-time crisis monitoring, live protocol updates, Green/Amber/Red mode, offline vault, family status sharing</li>
+          <li><strong>Founding member pricing</strong> — everyone who buys a protocol now locks in early access to the app at founding rates</li>
+          <li><strong>Priority onboarding</strong> — founding members get first access, direct support, and input into product development</li>
+          <li><strong>Your protocol transfers</strong> — the data you provide now becomes your app profile. No re-entry.</li>
+        </ul>
+        <div class="badge-row">
+          <span class="badge badge-gold">Founding Member</span>
+          <span class="badge">App launching 2026</span>
+          <span class="badge">Early rate locked</span>
+        </div>
+        <p style="font-size: 0.88rem;">Today: a $9-24 hand-built protocol. Tomorrow: a real-time continuity system that watches the world for your family. You're getting in at the ground floor.</p>
+      </div>
+
+      <!-- WHO THIS IS FOR -->
+      <div class="card">
+        <h2>Who orders this</h2>
+        <ul>
+          <li>Expat families in the Gulf worried about the Iran escalation</li>
+          <li>Digital nomads on islands with one airport and rising fuel prices</li>
+          <li>Parents with children in Southeast Asia watching borders tighten</li>
+          <li>Cross-border families with members flying through disrupted Gulf hubs</li>
+          <li>Retirees abroad who need a clear plan, not more headlines</li>
+          <li>Anyone who read "no place in the world will be safe" and thought: what's MY plan?</li>
+        </ul>
+      </div>
+
+      <!-- WHAT THIS IS NOT -->
+      <div class="card">
+        <h2>What this is not</h2>
+        <p>Full transparency:</p>
+        <ul>
+          <li>This is <strong>not insurance</strong> — we do not cover costs or evacuate you</li>
+          <li>This is <strong>not medical advice</strong> — we note medication logistics, not diagnoses</li>
+          <li>This is <strong>not a guarantee</strong> — routes and borders can change faster than any document</li>
+          <li>This is <strong>advisory only</strong> — every recommendation comes with confidence labels</li>
+          <li>This is <strong>not a generic template</strong> — every protocol is built for your specific situation</li>
+        </ul>
+        <p>We tell you what we know and what we don't know. That honesty is the product.</p>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- PRICING -->
+      <div style="text-align: center; margin-bottom: 24px;">
+        <h2 style="font-family: 'EB Garamond', serif; font-size: 1.8rem; margin: 0 0 8px;">Choose your plan</h2>
+        <p style="color: var(--muted);">Protocol delivered within 24 hours</p>
+      </div>
+
+      <div class="card" style="text-align: center; margin-bottom: 12px;">
+        <div style="font-size: 0.85rem; color: var(--muted);">Personal</div>
+        <div style="font-family: 'EB Garamond', serif; font-size: 2.4rem; font-weight: 700;">$9</div>
+        <p>One person. Full protocol. Solo expats and nomads.</p>
+        <a href="https://buy.stripe.com/bJeaEXcO1elT2eY4xWasg0a" class="btn btn-primary btn-big">Get your protocol — $9</a>
+      </div>
+
+      <div class="card highlight" style="text-align: center; margin-bottom: 12px; border-color: rgba(213,177,107,0.35);">
+        <div style="font-size: 0.85rem; color: var(--gold);">Family — most popular</div>
+        <div style="font-family: 'EB Garamond', serif; font-size: 2.4rem; font-weight: 700; color: var(--gold);">$17</div>
+        <p>Household protocol for families with children, elders, or split locations. Up to 4 members.</p>
+        <a href="https://buy.stripe.com/eVq5kD5lzcdL6ve0hGasg0b" class="btn btn-primary btn-big">Get your protocol — $17</a>
+      </div>
+
+      <div class="card" style="text-align: center; margin-bottom: 12px;">
+        <div style="font-size: 0.85rem; color: var(--muted);">Family+</div>
+        <div style="font-family: 'EB Garamond', serif; font-size: 2.4rem; font-weight: 700;">$24</div>
+        <p>Complex international families. 6+ members, multi-country, multi-passport.</p>
+        <a href="https://buy.stripe.com/bJe14naFT7Xv7zi7K8asg0c" class="btn btn-primary btn-big">Get your protocol — $24</a>
+      </div>
+
+      <div class="cta-section">
+        <p>Secure payment via Stripe. After payment you fill the intake form. Protocol delivered within 24h.</p>
+        <p style="margin-top: 8px;">Questions first? <a href="mailto:hello@planbefore.app">hello@planbefore.app</a></p>
+      </div>
+
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="wrap">
+      Continuity Protocol — Information and decision-support service. Not insurance, evacuation, or medical advice.<br/>
+      <a href="mailto:hello@planbefore.app" style="color: var(--gold);">hello@planbefore.app</a>
+    </div>
+  </footer>
+</body>
+</html>

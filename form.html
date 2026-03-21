@@ -194,6 +194,10 @@
           <input type="hidden" name="_next" value="https://planbefore.app/form.html?success=true" />
           <input type="hidden" name="_subject" value="New Protocol Request" />
 
+          <div style="padding: 16px 18px; border-radius: 14px; background: rgba(213,177,107,0.08); border: 1px solid rgba(213,177,107,0.2); margin-bottom: 24px; font-size: 0.88rem; color: var(--muted); line-height: 1.5;">
+            Takes 5-7 minutes. You do not need exact passport numbers, banking credentials, or medical details. We only need enough context to build your protocol.
+          </div>
+
           <div class="section-divider">Your contact</div>
 
           <div class="form-row">
@@ -391,8 +395,14 @@
   </footer>
 
   <script>
-  // Show confirmation if returning from Formspree
   if (window.location.search.indexOf('success=true') !== -1) {
     document.getElementById('form-section').style.display = 'none';
     document.getElementById('confirmation').style.display = 'block';
-    document.querySelector('.steps').innerHTML = '<div class="step" style="o
+    document.querySelector('.steps').innerHTML =
+      '<div class="step"><div class="step-num">1</div> Paid</div>' +
+      '<div class="step"><div class="step-num">2</div> Info sent</div>' +
+      '<div class="step active"><div class="step-num">3</div> Protocol incoming</div>';
+  }
+  </script>
+</body>
+</html>

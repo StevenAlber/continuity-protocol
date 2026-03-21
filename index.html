@@ -128,7 +128,7 @@
     .cta { padding: 34px; border-radius: 30px; background: linear-gradient(135deg, rgba(213,177,107,0.13), rgba(23,40,78,0.55)); border: 1px solid rgba(213,177,107,0.22); display: grid; grid-template-columns: 1.2fr auto; gap: 24px; align-items: center; }
     .footer { padding: 34px 0 54px; color: var(--muted); font-size: 0.95rem; }
     .micro { font-size: 0.82rem; color: #b7c1dc; line-height: 1.55; }
-    @media (max-width: 1020px) { .hero-grid, .cta, .two-up, .three-up, .grid-4, .pricing-wrap { grid-template-columns: 1fr; } .pricing.featured { transform: none; } .screen { min-height: auto; } .nav-links a:not(.btn) { display: none; } .crisis-stats { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 1020px) { .hero-grid, .cta, .two-up, .three-up, .grid-4, .pricing-wrap { grid-template-columns: 1fr; } .pricing.featured { transform: none; } .screen { min-height: auto; } .nav-links a:not(.btn) { display: none; } .crisis-stats { grid-template-columns: repeat(2, 1fr); } #sentinel [style*="grid-template-columns: 1.2fr"] { grid-template-columns: 1fr !important; } }
     @media (max-width: 640px) { h1 { font-size: 2.6rem; } .proof { grid-template-columns: 1fr; } .hero-actions { flex-direction: column; align-items: stretch; } .btn { width: 100%; } .nav-inner { min-height: 68px; } .cta { padding: 24px; grid-template-columns: 1fr; } .crisis-stats { grid-template-columns: 1fr 1fr; } }
   </style>
 </head>
@@ -146,6 +146,7 @@
         <a href="#how-it-works">How it works</a>
         <a href="#modes">Modes</a>
         <a href="#pricing">Pricing</a>
+        <a href="#sentinel">Sentinel</a>
         <a href="product.html" class="btn btn-primary btn-nav">Get protocol</a>
       </div>
     </div>
@@ -349,6 +350,40 @@
             <div class="muted" style="margin-top:8px;">Complex international families across multiple countries and jurisdictions.</div>
             <ul class="clean"><li>Everything in Family</li><li>6+ family members</li><li>Multi-country routing depth</li><li>Advanced export and planning</li><li>Priority support</li></ul>
             <a href="product.html" class="btn btn-secondary">Learn more</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sentinel" style="padding: 52px 0 42px;">
+      <div class="wrap">
+        <div style="padding: 36px 32px; border-radius: 30px; background: linear-gradient(135deg, rgba(213,177,107,0.08), rgba(15,21,41,0.9)); border: 1px solid rgba(213,177,107,0.2); box-shadow: 0 30px 80px rgba(0,0,0,0.3);">
+          <div style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 32px; align-items: start;">
+            <div>
+              <div style="display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border-radius: 999px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; background: rgba(213,177,107,0.1); border: 1px solid rgba(213,177,107,0.25); color: var(--gold); margin-bottom: 16px;">
+                <span style="width:6px; height:6px; border-radius:50%; background:var(--gold);"></span> Premium Intelligence
+              </div>
+              <h2 style="font-family: 'EB Garamond', serif; font-size: clamp(2rem, 3vw, 2.8rem); margin: 0 0 14px; letter-spacing: -0.03em;">Sentinel</h2>
+              <p style="color: var(--muted); font-size: 1.05rem; margin: 0 0 18px; line-height: 1.6;">Not more news. A private live intelligence room for families who need to see whether their continuity posture is changing &mdash; before the headlines catch up.</p>
+              <p style="color: var(--muted); font-size: 0.92rem; margin: 0 0 20px; line-height: 1.55;">Sentinel monitors your regions, surfaces the signals that matter, and tells you when your protocol status shifts from Watch to Prepare to Act. Regional disruption intelligence filtered for internationally mobile families.</p>
+              <ul class="clean" style="margin-bottom: 20px;">
+                <li>Live regional signal monitoring &mdash; Gulf, SE Asia, Europe, East Asia</li>
+                <li>Protocol-impact alerts: what changed and why it matters to your family</li>
+                <li>Risk posture tracking: Watch &rarr; Prepare &rarr; Act &rarr; Switch</li>
+                <li>Daily continuity digest with confidence labels</li>
+                <li>Route fragility and corridor stress awareness</li>
+                <li>Monthly protocol refresh included</li>
+                <li>Priority response and direct support</li>
+              </ul>
+              <p style="font-size: 0.82rem; color: var(--muted); font-style: italic;">Signal intelligence, not news. Confidence labels on every card. Advisory only. Always verify before acting.</p>
+            </div>
+            <div style="text-align: center; padding: 28px 24px; border-radius: 24px; background: rgba(255,255,255,0.04); border: 1px solid rgba(213,177,107,0.15);">
+              <div style="font-size: 0.82rem; color: var(--gold); font-weight: 600; margin-bottom: 8px;">Continuity Protocol</div>
+              <div style="font-family: 'EB Garamond', serif; font-size: 3.2rem; font-weight: 700; color: var(--gold-2); letter-spacing: -0.03em;">$95</div>
+              <div style="font-size: 0.85rem; color: var(--muted); margin-bottom: 20px;">per month</div>
+              <a href="mailto:hello@planbefore.app?subject=Sentinel%20Access%20Request&body=I%20am%20interested%20in%20Continuity%20Protocol%20Sentinel.%20%0A%0AMy%20name%3A%20%0ACurrent%20location%3A%20%0ARegions%20of%20interest%3A%20" class="btn btn-primary" style="width: 100%; padding: 16px 24px; font-size: 1rem; margin-bottom: 14px;">Request Sentinel access</a>
+              <p style="font-size: 0.78rem; color: var(--muted); line-height: 1.5;">Limited founding member slots.<br/>Includes initial protocol + live intelligence layer.</p>
+            </div>
           </div>
         </div>
       </div>

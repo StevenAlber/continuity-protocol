@@ -346,8 +346,11 @@
             <p class="muted" style="margin:0 auto 28px; max-width:680px;">A personalized crisis protocol delivered to your email within 24 hours. Built by hand for your family's exact situation.</p>
             <a href="product.html" class="btn btn-primary" style="padding:16px 36px; font-size:1.05rem;">See what you get</a>
             <p class="muted" style="margin-top:24px; font-size:0.85rem;">Not ready yet? Leave your email and we'll keep you informed.</p>
-            <form style="display:flex; gap:12px; max-width:420px; margin:12px auto 0; flex-wrap:wrap; justify-content:center;" onsubmit="return handleSignup(event);">
-              <input type="email" id="email-input" placeholder="Email address" required style="flex:1; min-width:220px; padding:12px 16px; border-radius:16px; border:1px solid var(--line); background:rgba(8,12,22,0.6); color:var(--text); font:inherit; font-size:0.9rem;" />
+            <form action="https://formspree.io/f/xdawjrdl" method="POST" style="display:flex; gap:12px; max-width:420px; margin:12px auto 0; flex-wrap:wrap; justify-content:center;">
+              <input type="hidden" name="_subject" value="Newsletter Signup" />
+              <input type="hidden" name="type" value="newsletter" />
+              <input type="hidden" name="_next" value="https://planbefore.app/?subscribed=true" />
+              <input type="email" name="email" placeholder="Email address" required style="flex:1; min-width:220px; padding:12px 16px; border-radius:16px; border:1px solid var(--line); background:rgba(8,12,22,0.6); color:var(--text); font:inherit; font-size:0.9rem;" />
               <button type="submit" class="btn btn-secondary" style="padding:12px 20px; font-size:0.9rem;">Stay informed</button>
             </form>
             <p id="signup-msg" style="text-align:center; font-size:0.85rem; color:var(--gold); display:none; margin:8px 0 0;"></p>
@@ -360,29 +363,26 @@
   <footer class="footer">
     <div class="wrap">
       <div style="display:flex; justify-content:space-between; gap:18px; flex-wrap:wrap; align-items:flex-start;">
-        <div><strong>Continuity Protocol</strong><br/><span class="muted">Know your next move</span><br/><a href="/cdn-cgi/l/email-protection#2149444d4d4e61514d404f4344474e53440f405151" style="color:var(--gold); font-size:0.85rem;"><span class="__cf_email__" data-cfemail="6c04090000032c1c000d020e090a031e09420d1c1c">[email&#160;protected]</span></a></div>
+        <div><strong>Continuity Protocol</strong><br/><span class="muted">Know your next move</span><br/><a href="mailto:hello@planbefore.app" style="color:var(--gold); font-size:0.85rem;">hello@planbefore.app</a></div>
         <div class="micro" style="max-width:720px;">Continuity Protocol is an information and decision-support service for internationally mobile households. It is not insurance, evacuation, medical advice, or a guarantee of route passability. Conditions may differ from available data. Users must verify independently before acting.</div>
       </div>
     </div>
   </footer>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  function handleSignup(e) {
-    e.preventDefault();
+  <script>
+  // Show subscription confirmation if returning from Formspree
+  if (window.location.search.indexOf('subscribed=true') !== -1) {
     var msg = document.getElementById('signup-msg');
-    msg.textContent = "You're on the list. We'll reach out when beta opens.";
-    msg.style.display = 'block';
-    document.getElementById('email-input').value = '';
-    return false;
+    if (msg) {
+      msg.textContent = "You're on the list. We'll keep you informed.";
+      msg.style.display = 'block';
+    }
   }
 
-  // === LIVE ALERT ===
-  // Fetches latest crisis headline from GDELT (free, CORS-enabled)
-  // Falls back to static rotating headlines if API fails
+  // Live alert ticker
   (function() {
     var alertEl = document.getElementById('alert-text');
     if (!alertEl) return;
-
     var fallbacks = [
       'Iran declares parks, resorts and tourist zones worldwide as targets',
       '18,000+ flights cancelled as Gulf crisis enters fourth week',
@@ -393,41 +393,33 @@
       '14,000 Asia\u2013Europe flights cancelled through Gulf hubs',
       'Iran war: 3 million displaced, global supply chains fractured'
     ];
-
     function useFallback() {
       var seed = new Date().getDate() * 8 + Math.floor(new Date().getHours() / 3);
       alertEl.textContent = fallbacks[seed % fallbacks.length];
     }
-
-    function cleanTitle(t) {
-      if (!t) return null;
-      t = t.replace(/^[^:\-|]+[\-|:]\s*/i, '').trim();
-      if (t.length > 80) t = t.substring(0, 77) + '...';
-      return t.charAt(0).toUpperCase() + t.slice(1);
-    }
-
-    function score(t) {
-      if (!t) return 0;
-      var s = 0, l = t.toLowerCase();
-      ['iran','hormuz','flight cancel','airspace','evacuat','expat','stranded','resort','tourist','travel ban','border clos','fuel price','oil price'].forEach(function(k) { if (l.indexOf(k) !== -1) s += 3; });
-      ['middle east','gulf','sanction','missile','airline','conflict','war','embassy','refugee'].forEach(function(k) { if (l.indexOf(k) !== -1) s += 2; });
-      return s;
-    }
-
     try {
-      var url = 'https://api.gdeltproject.org/api/v2/doc/doc?query=' +
-        encodeURIComponent('Iran crisis travel flight evacuation') +
-        '&mode=ArtList&maxrecords=10&format=json&sort=DateDesc&timespan=3d';
-
-      fetch(url, { mode: 'cors' })
+      fetch('https://api.gdeltproject.org/api/v2/doc/doc?query=' + encodeURIComponent('Iran crisis travel flight evacuation') + '&mode=ArtList&maxrecords=10&format=json&sort=DateDesc&timespan=3d', {mode:'cors'})
         .then(function(r) { return r.json(); })
         .then(function(data) {
           if (data && data.articles && data.articles.length > 0) {
-            var best = data.articles
-              .map(function(a) { return { t: a.title, s: score(a.title) }; })
-              .sort(function(a, b) { return b.s - a.s; })
-              .find(function(x) { return x.s > 2; });
-            if (best) {
-              var clean = cleanTitle(best.t);
-              if (clean && clean.length > 15) {
-                alertEl.textC
+            var best = null, bestScore = 0;
+            var high = ['iran','hormuz','flight cancel','evacuat','expat','stranded','resort','tourist','oil price'];
+            data.articles.forEach(function(a) {
+              var s = 0, t = (a.title||'').toLowerCase();
+              high.forEach(function(k) { if (t.indexOf(k) !== -1) s += 3; });
+              if (s > bestScore) { bestScore = s; best = a.title; }
+            });
+            if (best && bestScore > 2) {
+              best = best.replace(/^[^:\-|]+[\-|:]\s*/i, '').trim();
+              if (best.length > 80) best = best.substring(0, 77) + '...';
+              best = best.charAt(0).toUpperCase() + best.slice(1);
+              if (best.length > 15) { alertEl.textContent = best; return; }
+            }
+          }
+          useFallback();
+        }).catch(function() { useFallback(); });
+    } catch(e) { useFallback(); }
+  })();
+  </script>
+</body>
+</html>

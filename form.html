@@ -416,6 +416,7 @@
   </footer>
 
   <script>
+  // Show confirmation if redirected with success param (legacy support)
   if (window.location.search.indexOf('success=true') !== -1) {
     document.getElementById('form-section').style.display = 'none';
     document.getElementById('confirmation').style.display = 'block';
@@ -424,6 +425,40 @@
       '<div class="step done"><div class="step-num">&#10003;</div> Info sent</div>' +
       '<div class="step active"><div class="step-num">3</div> Protocol incoming</div>';
   }
+
+  // AJAX form submission — never leaves the page
+  document.getElementById('protocol-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var form = this;
+    var btn = form.querySelector('.btn-submit');
+    var originalText = btn.textContent;
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    }).then(function(response) {
+      if (response.ok) {
+        document.getElementById('form-section').style.display = 'none';
+        document.getElementById('confirmation').style.display = 'block';
+        document.getElementById('steps-bar').innerHTML =
+          '<div class="step done"><div class="step-num">&#10003;</div> Paid</div>' +
+          '<div class="step done"><div class="step-num">&#10003;</div> Info sent</div>' +
+          '<div class="step active"><div class="step-num">3</div> Protocol incoming</div>';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        btn.textContent = 'Error — please try again';
+        btn.disabled = false;
+        setTimeout(function() { btn.textContent = originalText; }, 3000);
+      }
+    }).catch(function() {
+      btn.textContent = 'Connection error — please try again';
+      btn.disabled = false;
+      setTimeout(function() { btn.textContent = originalText; }, 3000);
+    });
+  });
   </script>
 </body>
 </html>

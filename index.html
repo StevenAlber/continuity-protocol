@@ -127,7 +127,7 @@
         <a href="#how-it-works">How it works</a>
         <a href="#modes">Modes</a>
         <a href="#pricing">Pricing</a>
-        <a href="#waitlist" class="btn btn-primary btn-nav">Join waitlist</a>
+        <a href="#pricing" class="btn btn-primary btn-nav">Get protocol</a>
       </div>
     </div>
   </nav>
@@ -140,7 +140,7 @@
           <h1>When systems wobble,<br/>your family gets<br/>the next move</h1>
           <p class="lead">Continuity Protocol is a calm operational layer for people who live between borders. Not more news. Not generic alerts. A household-specific protocol that tells you what changed, why it matters to your family, and what to do if Plan&nbsp;A&nbsp;closes.</p>
           <div class="hero-actions">
-            <a href="#waitlist" class="btn btn-primary">Request early access</a>
+            <a href="#pricing" class="btn btn-primary">Get your protocol</a>
             <a href="#how-it-works" class="btn btn-secondary">See the protocol flow</a>
           </div>
           <div class="proof">
@@ -318,21 +318,21 @@
             <div class="price">$9<span style="font-size:1rem; font-weight:700; color:var(--muted);"> / month</span></div>
             <div class="muted">One person, one protocol. Full crisis engine for solo expats and nomads.</div>
             <ul class="clean"><li>Full protocol engine</li><li>Green / Amber / Red states</li><li>Offline continuity pack</li><li>Route and document monitoring</li><li>Confidence labels on every card</li></ul>
-            <a href="#waitlist" class="btn btn-secondary">Join early access</a>
+            <a href="https://buy.stripe.com/bjeaexco1elt2ey4xwasg0a" class="btn btn-secondary">Get your protocol — $9</a>
           </div>
           <div class="pricing featured">
             <div class="tiny" style="color: var(--gold);">Family</div>
             <div class="price" style="color: var(--gold);">$17<span style="font-size:1rem; font-weight:700; color:var(--muted);"> / month</span></div>
             <div class="muted">Household-specific protocols for families with children, elders, or split locations.</div>
             <ul class="clean"><li>Everything in Personal</li><li>Up to 4 family members</li><li>Family Pings status sharing</li><li>Shared crisis protocols</li><li>3-minute emergency onboarding</li></ul>
-            <a href="#waitlist" class="btn btn-primary">Join early access</a>
+            <a href="https://buy.stripe.com/evq5kd5lzcdl6ve0hgasg0b" class="btn btn-primary">Get your protocol — $17</a>
           </div>
           <div class="pricing">
             <div class="tiny">Family+</div>
             <div class="price">$24<span style="font-size:1rem; font-weight:700; color:var(--muted);"> / month</span></div>
             <div class="muted">Complex international families across multiple countries and jurisdictions.</div>
             <ul class="clean"><li>Everything in Family</li><li>6+ family members</li><li>Multi-country routing depth</li><li>Advanced export and planning</li><li>Priority support</li></ul>
-            <a href="#waitlist" class="btn btn-secondary">Talk to us</a>
+            <a href="https://buy.stripe.com/bje14naft7xv7zi7k8asg0c" class="btn btn-secondary">Get your protocol — $24</a>
           </div>
         </div>
       </div>
@@ -340,19 +340,19 @@
 
     <section id="waitlist">
       <div class="wrap">
-        <div class="cta">
+        <div class="cta" style="grid-template-columns: 1fr; text-align: center;">
           <div>
-            <div class="eyebrow" style="margin-bottom:14px;"><span></span> Early access</div>
+            <div class="eyebrow" style="margin-bottom:14px; justify-content: center;"><span></span> Available now</div>
             <h2 style="margin:0 0 12px; font-size: clamp(2rem, 3vw, 3rem); letter-spacing:-0.03em;">Build your protocol before you need it</h2>
-            <p class="muted" style="margin:0; max-width:680px;">Join the first cohort for internationally mobile families, expats, and cross-border households. Calm product. Serious use case. No fear marketing.</p>
+            <p class="muted" style="margin:0 auto 28px; max-width:680px;">Choose your plan above and get a personalized crisis protocol delivered to your email within 24 hours. Built by hand for your family's exact situation.</p>
+            <a href="#pricing" class="btn btn-primary" style="padding:16px 36px; font-size:1.05rem;">Choose your plan</a>
+            <p class="muted" style="margin-top:24px; font-size:0.85rem;">Not ready yet? Leave your email and we'll keep you informed.</p>
+            <form style="display:flex; gap:12px; max-width:420px; margin:12px auto 0; flex-wrap:wrap; justify-content:center;" onsubmit="return handleSignup(event);">
+              <input type="email" id="email-input" placeholder="Email address" required style="flex:1; min-width:220px; padding:12px 16px; border-radius:16px; border:1px solid var(--line); background:rgba(8,12,22,0.6); color:var(--text); font:inherit; font-size:0.9rem;" />
+              <button type="submit" class="btn btn-secondary" style="padding:12px 20px; font-size:0.9rem;">Stay informed</button>
+            </form>
+            <p id="signup-msg" style="text-align:center; font-size:0.85rem; color:var(--gold); display:none; margin:8px 0 0;"></p>
           </div>
-          <form style="display:grid; gap:12px; min-width:min(100%, 360px);" onsubmit="return handleSignup(event);">
-            <input type="text" placeholder="Your name" style="padding:15px 16px; border-radius:16px; border:1px solid var(--line); background:rgba(8,12,22,0.6); color:var(--text); font:inherit;" />
-            <input type="email" id="email-input" placeholder="Email address" required style="padding:15px 16px; border-radius:16px; border:1px solid var(--line); background:rgba(8,12,22,0.6); color:var(--text); font:inherit;" />
-            <input type="text" placeholder="Current base city (optional)" style="padding:15px 16px; border-radius:16px; border:1px solid var(--line); background:rgba(8,12,22,0.6); color:var(--text); font:inherit;" />
-            <button type="submit" class="btn btn-primary">Request early access</button>
-            <p id="signup-msg" style="text-align:center; font-size:0.85rem; color:var(--gold); display:none; margin:0;"></p>
-          </form>
         </div>
       </div>
     </section>

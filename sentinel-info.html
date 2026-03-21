@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sentinel — Live Continuity Intelligence | Continuity Protocol</title>
+  <meta name="description" content="Private live intelligence for internationally mobile families. Regional signal monitoring, protocol-impact alerts, risk posture tracking. $95/month." />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://planbefore.app/sentinel-info.html" />
+  <meta property="og:title" content="Sentinel — Live Continuity Intelligence" />
+  <meta property="og:description" content="Private regional intelligence for families in motion. Not more news — a live continuity layer that tells you when your protocol posture changes. $95/month." />
+  <meta property="og:image" content="https://planbefore.app/og-image.png" />
+  <meta property="og:site_name" content="Continuity Protocol" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Sentinel — Live Continuity Intelligence" />
+  <meta name="twitter:description" content="Private regional intelligence for families in motion. $95/month." />
+  <meta name="twitter:image" content="https://planbefore.app/og-image.png" />
+
+  <link rel="canonical" href="https://planbefore.app/sentinel-info.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: rgba(255,255,255,0.06);
+      --text: #eef2ff;
+      --muted: #aeb8d4;
+      --line: rgba(255,255,255,0.12);
+      --gold: #d5b16b;
+      --gold-2: #f3d191;
+      --green: #1f8f64;
+      --amber: #d08a15;
+      --red: #b54a4a;
+      --shadow: 0 20px 60px rgba(0,0,0,0.35);
+      --max: 800px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+      color: var(--text);
+      background: radial-gradient(circle at top left, rgba(213,177,107,0.12), transparent 22%), linear-gradient(180deg, #09101d 0%, #0b1020 30%, #0d1427 100%);
+      line-height: 1.55;
+      min-height: 100vh;
+    }
+    a { color: var(--gold); text-decoration: none; }
+    .wrap { width: min(var(--max), calc(100% - 32px)); margin: 0 auto; }
+
+    .nav { position: sticky; top: 0; z-index: 20; backdrop-filter: blur(16px); background: rgba(7,11,22,0.62); border-bottom: 1px solid var(--line); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 64px; }
+    .brand { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 0.95rem; color: var(--text); }
+    .brand-mark { width: 34px; height: 34px; border-radius: 10px; background: linear-gradient(135deg, rgba(213,177,107,0.28), rgba(213,177,107,0.05)); border: 1px solid rgba(213,177,107,0.35); display: grid; place-items: center; position: relative; overflow: hidden; }
+    .brand-mark::before, .brand-mark::after { content: ""; position: absolute; border: 1px solid rgba(243,209,145,0.55); border-radius: 999px; }
+    .brand-mark::before { width: 18px; height: 18px; }
+    .brand-mark::after { width: 8px; height: 8px; }
+    .tiny { font-size: 0.78rem; color: var(--muted); }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 14px 24px; border-radius: 999px; font-weight: 700; border: 1px solid transparent; transition: all .18s ease; cursor: pointer; text-decoration: none; }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary { background: linear-gradient(135deg, var(--gold), var(--gold-2)); color: #22170a; box-shadow: 0 14px 40px rgba(213,177,107,0.28); }
+    .btn-secondary { background: rgba(255,255,255,0.04); color: var(--text); border-color: var(--line); }
+    .btn-big { padding: 18px 32px; font-size: 1.05rem; width: 100%; justify-content: center; }
+
+    .page-header { padding: 48px 0 8px; }
+    .page-header h1 { font-family: 'EB Garamond', serif; font-size: clamp(2.2rem, 4vw, 3rem); line-height: 1.1; margin: 0 0 16px; letter-spacing: -0.03em; }
+    .page-header p { color: var(--muted); font-size: 1.05rem; max-width: 640px; margin: 0 0 8px; }
+
+    .content { padding: 32px 0 60px; }
+
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      border: 1px solid var(--line); border-radius: 24px;
+      padding: 28px 24px; margin-bottom: 20px;
+      box-shadow: var(--shadow);
+    }
+    .card h2 { font-family: 'EB Garamond', serif; font-size: 1.4rem; margin: 0 0 12px; color: var(--gold); }
+    .card h3 { font-size: 1rem; margin: 16px 0 8px; color: var(--text); }
+    .card p { color: var(--muted); margin: 0 0 12px; font-size: 0.95rem; }
+    .card ul { padding: 0; margin: 0 0 12px; list-style: none; }
+    .card ul li { color: var(--muted); padding: 6px 0 6px 22px; position: relative; font-size: 0.93rem; }
+    .card ul li::before { content: "\2192"; position: absolute; left: 0; color: var(--gold); }
+
+    .highlight {
+      background: linear-gradient(135deg, rgba(213,177,107,0.1), rgba(255,255,255,0.04));
+      border-color: rgba(213,177,107,0.25);
+    }
+
+    .sentinel-badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border-radius: 999px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; background: rgba(213,177,107,0.1); border: 1px solid rgba(213,177,107,0.25); color: var(--gold); margin-bottom: 16px; }
+    .sentinel-badge::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
+
+    .comparison {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
+      background: rgba(255,255,255,0.06); border-radius: 18px;
+      overflow: hidden; margin: 20px 0;
+    }
+    .comp-cell { padding: 16px; background: var(--bg); }
+    .comp-cell.header { font-weight: 600; font-size: 0.85rem; color: var(--gold); text-transform: uppercase; letter-spacing: 0.08em; }
+    .comp-cell .amount { font-family: 'EB Garamond', serif; font-size: 1.3rem; font-weight: 700; color: var(--text); }
+    .comp-cell .label { font-size: 0.82rem; color: var(--muted); }
+
+    .divider { height: 1px; background: var(--line); margin: 32px 0; }
+
+    .mode-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 16px 0; }
+    .mode-box { padding: 14px 10px; border-radius: 14px; text-align: center; border: 1px solid var(--line); background: var(--panel); }
+    .mode-box .mode-dot { width: 10px; height: 10px; border-radius: 50%; margin: 0 auto 6px; }
+    .mode-box .mode-name { font-size: 0.78rem; font-weight: 700; color: var(--text); }
+    .mode-box .mode-desc { font-size: 0.68rem; color: var(--muted); margin-top: 2px; }
+
+    .footer { padding: 32px 0; color: var(--muted); font-size: 0.82rem; text-align: center; }
+
+    @media (max-width: 500px) { .comparison { grid-template-columns: 1fr; } .mode-row { grid-template-columns: 1fr 1fr; } }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <a href="./" class="brand">
+        <div class="brand-mark"></div>
+        <div>
+          <div>Continuity Protocol</div>
+          <div class="tiny">Know your next move</div>
+        </div>
+      </a>
+      <a href="./" class="tiny" style="color: var(--gold);">&larr; Back to home</a>
+    </div>
+  </nav>
+
+  <div class="wrap">
+    <div class="page-header">
+      <div class="sentinel-badge">Premium Intelligence</div>
+      <h1>Sentinel</h1>
+      <p>Live regional continuity intelligence for families who need to see whether their protocol posture is changing &mdash; before the headlines catch up.</p>
+    </div>
+
+    <div class="content">
+
+      <!-- WHAT IS SENTINEL -->
+      <div class="card highlight">
+        <h2>What Sentinel gives you</h2>
+        <p>Sentinel is not a news feed. It is a private intelligence layer that monitors your regions, filters for signals that affect mobile families, and tells you when your continuity posture shifts.</p>
+        <p style="color: var(--text);">Every signal card answers one question: <strong>does this change what my family should do?</strong></p>
+        <ul>
+          <li><strong>Live regional signal monitoring</strong> &mdash; Gulf &amp; Middle East, Southeast Asia, Europe, East Asia. Signal refresh every 15&ndash;30 minutes.</li>
+          <li><strong>Protocol-impact alerts</strong> &mdash; not "something happened" but "this changes your risk posture." Flight disruption, border friction, fuel pressure, route stress, conflict escalation.</li>
+          <li><strong>Risk posture tracking</strong> &mdash; your status moves through four states: Watch &rarr; Prepare &rarr; Act &rarr; Switch. Each shift comes with specific recommended actions.</li>
+          <li><strong>Daily continuity digest</strong> &mdash; top changes in your regions, why they matter, what to watch next. Confidence labels on every signal.</li>
+          <li><strong>Route fragility awareness</strong> &mdash; corridor stress, airline reliability, fuel impact, transit hub pressure. See whether your exit paths are strong, softening, or brittle.</li>
+          <li><strong>Monthly protocol refresh</strong> &mdash; your personalized crisis protocol stays current. Updated with latest route, border, and risk data each month.</li>
+          <li><strong>Priority response</strong> &mdash; direct email support, faster turnaround on questions and protocol updates.</li>
+        </ul>
+      </div>
+
+      <!-- HOW IT WORKS -->
+      <div class="card">
+        <h2>How Sentinel works</h2>
+        <h3>Step 1 &mdash; Subscribe</h3>
+        <p>Choose Sentinel below. Secure monthly payment via Stripe. Cancel anytime.</p>
+        <h3>Step 2 &mdash; Build your profile</h3>
+        <p>Tell us your location, family, passports, regions of concern. Same intake as our protocol service &mdash; takes 5&ndash;10 minutes.</p>
+        <h3>Step 3 &mdash; Get your protocol + dashboard access</h3>
+        <p>Within 24 hours you receive your initial personalized crisis protocol AND private access to the Sentinel intelligence dashboard.</p>
+        <h3>Step 4 &mdash; Monitor, prepare, act</h3>
+        <p>Your dashboard updates continuously. When signals cross your thresholds, you get specific action recommendations &mdash; not panic, but preparation.</p>
+      </div>
+
+      <!-- POSTURE STATES -->
+      <div class="card">
+        <h2>Four posture states</h2>
+        <p>Most intelligence products give you raw information. Sentinel gives you a decision framework.</p>
+        <div class="mode-row">
+          <div class="mode-box">
+            <div class="mode-dot" style="background: #22c55e;"></div>
+            <div class="mode-name">Watch</div>
+            <div class="mode-desc">Monitor signals. Maintain readiness.</div>
+          </div>
+          <div class="mode-box" style="border-color: rgba(245,158,11,0.3);">
+            <div class="mode-dot" style="background: #f59e0b;"></div>
+            <div class="mode-name">Prepare</div>
+            <div class="mode-desc">Ready posture. Pack, verify, confirm.</div>
+          </div>
+          <div class="mode-box" style="border-color: rgba(239,68,68,0.3);">
+            <div class="mode-dot" style="background: #ef4444;"></div>
+            <div class="mode-name">Act</div>
+            <div class="mode-desc">Execute protocol. Move if needed.</div>
+          </div>
+          <div class="mode-box" style="border-color: rgba(147,51,234,0.3);">
+            <div class="mode-dot" style="background: #9333ea;"></div>
+            <div class="mode-name">Switch</div>
+            <div class="mode-desc">Primary failed. Activate fallback.</div>
+          </div>
+        </div>
+        <p>Your dashboard shows exactly where you are and what to do at each state. No ambiguity.</p>
+      </div>
+
+      <!-- SIGNAL TYPES -->
+      <div class="card">
+        <h2>What Sentinel monitors</h2>
+        <p>Signals are filtered for relevance to internationally mobile families. Not everything that happens &mdash; only what changes your posture.</p>
+        <ul>
+          <li><strong>Flight disruption</strong> &mdash; cancellations, rerouting, airspace closures, carrier reliability</li>
+          <li><strong>Border &amp; admin friction</strong> &mdash; visa changes, processing delays, entry restrictions</li>
+          <li><strong>Fuel pressure</strong> &mdash; pricing spikes, supply stress, impact on route viability</li>
+          <li><strong>Conflict &amp; escalation</strong> &mdash; military developments, threat rhetoric, security posture changes</li>
+          <li><strong>Route stress</strong> &mdash; corridor congestion, transit hub pressure, alternative path availability</li>
+          <li><strong>Embassy &amp; advisory lag</strong> &mdash; when official guidance trails reality on the ground</li>
+          <li><strong>Telecom &amp; infrastructure</strong> &mdash; communication disruptions, payment system availability</li>
+        </ul>
+        <p style="font-size: 0.85rem; font-style: italic;">Every signal carries a confidence label: Confirmed, Likely, or Emerging. We tell you what we know and what we don't.</p>
+      </div>
+
+      <!-- COMPARISON -->
+      <div class="card">
+        <h2>Protocol vs Sentinel</h2>
+        <p>Both are valuable. They serve different needs.</p>
+        <div class="comparison">
+          <div class="comp-cell header">One-time protocol</div>
+          <div class="comp-cell header">Sentinel</div>
+          <div class="comp-cell"><div class="label">Single document, built once</div></div>
+          <div class="comp-cell"><div class="label">Living intelligence + monthly refresh</div></div>
+          <div class="comp-cell"><div class="label">Your plan at a point in time</div></div>
+          <div class="comp-cell"><div class="label">Continuous posture awareness</div></div>
+          <div class="comp-cell"><div class="label">You check when worried</div></div>
+          <div class="comp-cell"><div class="label">Sentinel tells you when to worry</div></div>
+          <div class="comp-cell"><div class="label">$9&ndash;24 one-time</div></div>
+          <div class="comp-cell"><div class="label">$95/month, cancel anytime</div></div>
+          <div class="comp-cell"><div class="label">Perfect start for most families</div></div>
+          <div class="comp-cell"><div class="label">For families who need ongoing awareness</div></div>
+        </div>
+      </div>
+
+      <!-- WHO IS THIS FOR -->
+      <div class="card">
+        <h2>Who Sentinel is for</h2>
+        <ul>
+          <li>Expat families in volatile regions who need continuous situational awareness</li>
+          <li>Executives and remote workers with families in multiple countries</li>
+          <li>Families in the Gulf, Southeast Asia, or transit-dependent locations</li>
+          <li>People who learned during the Iran crisis that information came too late</li>
+          <li>Anyone who would rather see the signal before it becomes a headline</li>
+        </ul>
+      </div>
+
+      <!-- WHAT THIS IS NOT -->
+      <div class="card">
+        <h2>What Sentinel is not</h2>
+        <p>Full transparency, as with everything we build:</p>
+        <ul>
+          <li>This is <strong>not military-grade certainty</strong> &mdash; we surface signals, not ground truth</li>
+          <li>This is <strong>not a news subscription</strong> &mdash; you get intelligence, not headlines</li>
+          <li>This is <strong>not evacuation</strong> &mdash; we tell you when to move, not move you</li>
+          <li>This is <strong>not guaranteed accuracy</strong> &mdash; conditions change faster than any system</li>
+          <li>This is <strong>advisory only</strong> &mdash; every signal labeled with confidence and freshness</li>
+        </ul>
+        <p>We compress signal into decision support. The decisions remain yours.</p>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- PRICING -->
+      <div class="card highlight" style="text-align: center; border-color: rgba(213,177,107,0.35); margin-bottom: 12px;">
+        <div class="sentinel-badge" style="margin: 0 auto 14px;">Premium Intelligence</div>
+        <div style="font-family: 'EB Garamond', serif; font-size: 3rem; font-weight: 700; color: var(--gold-2);">$95</div>
+        <div style="font-size: 0.9rem; color: var(--muted); margin-bottom: 6px;">per month &middot; cancel anytime</div>
+        <p style="color: var(--text); font-size: 1rem; margin-bottom: 18px;">Includes initial crisis protocol + live intelligence dashboard access.</p>
+        <!-- REPLACE_WITH_STRIPE_LINK: Create a $95/month recurring Payment Link in Stripe and replace the href below -->
+        <a href="mailto:hello@planbefore.app?subject=Sentinel%20Access%20Request&body=I%20am%20interested%20in%20Continuity%20Protocol%20Sentinel.%0A%0AMy%20name%3A%20%0ACurrent%20location%3A%20%0ARegions%20of%20interest%3A%20" class="btn btn-primary btn-big" style="max-width: 440px; margin: 0 auto 16px;">Get Sentinel &mdash; $95/month</a>
+        <p style="font-size: 0.78rem; color: var(--muted); line-height: 1.5;">Founding member pricing. Limited slots available.<br/>Secure payment via Stripe. After payment you fill the intake form.</p>
+      </div>
+
+      <div style="text-align: center; padding: 20px 0;">
+        <p style="color: var(--muted); font-size: 0.9rem;">Not ready for Sentinel? Start with a <a href="product.html">one-time protocol from $9</a>.</p>
+        <p style="color: var(--muted); font-size: 0.85rem; margin-top: 8px;">Questions? <a href="mailto:hello@planbefore.app">hello@planbefore.app</a></p>
+      </div>
+
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="wrap">
+      Continuity Protocol Sentinel &mdash; Regional continuity intelligence. Advisory only. Not insurance, evacuation, or a guarantee of accuracy.<br/>
+      <a href="mailto:hello@planbefore.app" style="color: var(--gold);">hello@planbefore.app</a>
+    </div>
+  </footer>
+</body>
+</html>

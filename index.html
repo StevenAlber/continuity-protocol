@@ -142,7 +142,7 @@
           <h1>When systems wobble,<br/>your family gets<br/>the next move</h1>
           <p class="lead">Continuity Protocol is a calm operational layer for people who live between borders. Not more news. Not generic alerts. A household-specific protocol that tells you what changed, why it matters to your family, and what to do if Plan&nbsp;A&nbsp;closes.</p>
           <div class="hero-actions">
-            <a href="product.html" class="btn btn-primary">Get your protocol</a>
+            <a href="product.html" class="btn btn-primary">See what you get</a>
             <a href="#how-it-works" class="btn btn-secondary">See the protocol flow</a>
           </div>
           <div class="proof">
@@ -221,7 +221,7 @@
           <div class="stat"><div class="stat-number">18,000+</div><div class="stat-label">Flights cancelled<br>in the first week</div></div>
           <div class="stat"><div class="stat-number">8 days</div><div class="stat-label">From ultimatum<br>to airstrikes</div></div>
           <div class="stat"><div class="stat-number">+54%</div><div class="stat-label">Oil price spike<br>in 30 days</div></div>
-          <div class="stat"><div class="stat-number">0</div><div class="stat-label">Products that gave<br>families a plan</div></div>
+          <div class="stat"><div class="stat-number">0</div><div class="stat-label">Consumer products giving<br>families a personal plan</div></div>
         </div>
         <div class="quote-block">
           "Expats organized $1,000 taxi rides to Oman through WhatsApp groups. A retired US Army Major General said two embassy contacts provided no useful information. 11,600 tourists were stranded in Bali with no advance notice."
@@ -312,7 +312,7 @@
       <div class="wrap">
         <div class="section-head">
           <h2>Three plans. One calm system</h2>
-          <p>Every plan delivers a hand-built crisis protocol for your exact situation. Choose the level that fits your family.</p>
+          <p>Every plan delivers an expert-built crisis protocol for your exact situation. See exactly what's inside before you order.</p>
         </div>
         <div class="pricing-wrap">
           <div class="pricing">
@@ -343,7 +343,7 @@
           <div>
             <div class="eyebrow" style="margin-bottom:14px; justify-content: center;"><span></span> Available now</div>
             <h2 style="margin:0 0 12px; font-size: clamp(2rem, 3vw, 3rem); letter-spacing:-0.03em;">Build your protocol before you need it</h2>
-            <p class="muted" style="margin:0 auto 28px; max-width:680px;">A personalized crisis protocol delivered to your email within 24 hours. Built by hand for your family's exact situation.</p>
+            <p class="muted" style="margin:0 auto 28px; max-width:680px;">A personalized crisis protocol delivered to your email, typically within 24 hours. Prepared for your family's exact situation.</p>
             <a href="product.html" class="btn btn-primary" style="padding:16px 36px; font-size:1.05rem;">See what you get</a>
             <p class="muted" style="margin-top:24px; font-size:0.85rem;">Not ready yet? Leave your email and we'll keep you informed.</p>
             <form action="https://formspree.io/f/xdawjrdl" method="POST" style="display:flex; gap:12px; max-width:420px; margin:12px auto 0; flex-wrap:wrap; justify-content:center;">
@@ -384,28 +384,30 @@
     var alertEl = document.getElementById('alert-text');
     if (!alertEl) return;
     var fallbacks = [
-      'Iran declares parks, resorts and tourist zones worldwide as targets',
-      '18,000+ flights cancelled as Gulf crisis enters fourth week',
-      'Brent crude past $110 as Strait of Hormuz shipping near halt',
-      'Multiple governments evacuating citizens from Gulf states',
-      'SAS cancels 1,000 flights as jet fuel prices double in 10 days',
-      'Expats stranded across Gulf \u2014 embassies unable to assist individually',
-      '14,000 Asia\u2013Europe flights cancelled through Gulf hubs',
-      'Iran war: 3 million displaced, global supply chains fractured'
+      'Iran declares resorts and tourist zones worldwide as targets',
+      'Gulf air corridors under sustained strain — rerouting continues',
+      'Jet fuel shock pressures Asia-Europe routing',
+      'Evacuation planning accelerates across multiple states',
+      'Resort-zone threat rhetoric raises traveler anxiety globally',
+      'Multiple airlines extend Gulf route suspensions through April',
+      'Expat families reassessing continuity across SE Asia and Gulf',
+      'Cross-border mobility increasingly fragile as fuel costs surge'
     ];
     function useFallback() {
       var seed = new Date().getDate() * 8 + Math.floor(new Date().getHours() / 3);
       alertEl.textContent = fallbacks[seed % fallbacks.length];
     }
     try {
-      fetch('https://api.gdeltproject.org/api/v2/doc/doc?query=' + encodeURIComponent('Iran crisis travel flight evacuation') + '&mode=ArtList&maxrecords=10&format=json&sort=DateDesc&timespan=3d', {mode:'cors'})
+      fetch('https://api.gdeltproject.org/api/v2/doc/doc?query=' +
+        encodeURIComponent('Iran crisis travel flight evacuation') +
+        '&mode=ArtList&maxrecords=10&format=json&sort=DateDesc&timespan=3d', {mode:'cors'})
         .then(function(r) { return r.json(); })
         .then(function(data) {
           if (data && data.articles && data.articles.length > 0) {
             var best = null, bestScore = 0;
             var high = ['iran','hormuz','flight cancel','evacuat','expat','stranded','resort','tourist','oil price'];
             data.articles.forEach(function(a) {
-              var s = 0, t = (a.title||'').toLowerCase();
+              var s = 0, t = (a.title || '').toLowerCase();
               high.forEach(function(k) { if (t.indexOf(k) !== -1) s += 3; });
               if (s > bestScore) { bestScore = s; best = a.title; }
             });

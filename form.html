@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Continuity Protocol — Build Your Protocol</title>
+  <meta name="description" content="Tell us about your family and situation. We'll deliver your personalized crisis protocol within 24 hours." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: rgba(255,255,255,0.06);
+      --text: #eef2ff;
+      --muted: #aeb8d4;
+      --line: rgba(255,255,255,0.12);
+      --gold: #d5b16b;
+      --gold-2: #f3d191;
+      --green: #1f8f64;
+      --shadow: 0 20px 60px rgba(0,0,0,0.35);
+      --max: 720px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+      color: var(--text);
+      background: radial-gradient(circle at top left, rgba(213,177,107,0.16), transparent 22%), radial-gradient(circle at right 15% top 20%, rgba(43,91,181,0.18), transparent 28%), linear-gradient(180deg, #09101d 0%, #0b1020 30%, #0d1427 100%);
+      line-height: 1.5;
+      min-height: 100vh;
+    }
+    a { color: var(--gold); text-decoration: none; }
+    .wrap { width: min(var(--max), calc(100% - 32px)); margin: 0 auto; }
+
+    /* NAV */
+    .nav { position: sticky; top: 0; z-index: 20; backdrop-filter: blur(16px); background: rgba(7,11,22,0.62); border-bottom: 1px solid var(--line); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 64px; }
+    .brand { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 0.95rem; letter-spacing: 0.02em; }
+    .brand-mark { width: 34px; height: 34px; border-radius: 10px; background: linear-gradient(135deg, rgba(213,177,107,0.28), rgba(213,177,107,0.05)); border: 1px solid rgba(213,177,107,0.35); display: grid; place-items: center; position: relative; overflow: hidden; }
+    .brand-mark::before, .brand-mark::after { content: ""; position: absolute; border: 1px solid rgba(243,209,145,0.55); border-radius: 999px; }
+    .brand-mark::before { width: 18px; height: 18px; }
+    .brand-mark::after { width: 8px; height: 8px; }
+    .tiny { font-size: 0.78rem; color: var(--muted); }
+
+    /* HEADER */
+    .page-header { padding: 48px 0 32px; text-align: center; }
+    .page-header h1 {
+      font-family: 'EB Garamond', serif;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      line-height: 1.1; margin: 0 0 12px; letter-spacing: -0.03em;
+    }
+    .page-header p { color: var(--muted); font-size: 1.05rem; max-width: 560px; margin: 0 auto; }
+
+    /* STEPS */
+    .steps { display: flex; justify-content: center; gap: 32px; margin: 32px 0; flex-wrap: wrap; }
+    .step { display: flex; align-items: center; gap: 10px; font-size: 0.9rem; color: var(--muted); }
+    .step-num { width: 28px; height: 28px; border-radius: 50%; background: rgba(213,177,107,0.15); border: 1px solid rgba(213,177,107,0.3); display: grid; place-items: center; font-weight: 700; font-size: 0.8rem; color: var(--gold); }
+    .step.active .step-num { background: var(--gold); color: #22170a; }
+    .step.active { color: var(--text); font-weight: 500; }
+
+    /* FORM */
+    .form-section { padding: 0 0 60px; }
+    .form-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 36px 28px;
+      box-shadow: var(--shadow);
+    }
+    .form-group { margin-bottom: 24px; }
+    .form-group:last-of-type { margin-bottom: 32px; }
+    .form-label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .form-hint {
+      display: block;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(8,12,22,0.6);
+      color: var(--text);
+      font: inherit;
+      font-size: 0.95rem;
+      transition: border-color 0.2s;
+      outline: none;
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: rgba(213,177,107,0.5);
+    }
+    .form-input::placeholder, .form-textarea::placeholder { color: rgba(174,184,212,0.5); }
+    .form-textarea { min-height: 120px; resize: vertical; }
+    .form-select { appearance: none; cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='%23aeb8d4'%3E%3Cpath d='M6 8L0 0h12z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; padding-right: 40px; }
+    .form-select option { background: #0b1020; color: var(--text); }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 500px) { .form-row { grid-template-columns: 1fr; } }
+
+    .section-divider {
+      font-family: 'EB Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--gold);
+      margin: 32px 0 20px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(213,177,107,0.2);
+    }
+
+    .btn-submit {
+      display: block;
+      width: 100%;
+      padding: 16px 24px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 1rem;
+      border: none;
+      background: linear-gradient(135deg, var(--gold), var(--gold-2));
+      color: #22170a;
+      cursor: pointer;
+      box-shadow: 0 14px 40px rgba(213,177,107,0.28);
+      transition: all 0.18s ease;
+    }
+    .btn-submit:hover { transform: translateY(-1px); box-shadow: 0 18px 50px rgba(213,177,107,0.35); }
+
+    .privacy-note {
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 16px;
+      line-height: 1.5;
+    }
+
+    /* CONFIRMATION */
+    .confirmation {
+      text-align: center;
+      padding: 60px 28px;
+      display: none;
+    }
+    .confirmation h2 {
+      font-family: 'EB Garamond', serif;
+      font-size: 2rem;
+      margin: 0 0 16px;
+      color: var(--gold);
+    }
+    .confirmation p { color: var(--muted); font-size: 1.05rem; max-width: 480px; margin: 0 auto 12px; }
+    .check-icon {
+      width: 64px; height: 64px; border-radius: 50%;
+      background: rgba(31,143,100,0.15); border: 2px solid var(--green);
+      display: grid; place-items: center; margin: 0 auto 24px;
+      font-size: 1.8rem; color: var(--green);
+    }
+
+    .footer { padding: 32px 0; color: var(--muted); font-size: 0.82rem; text-align: center; }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <a href="index.html" class="brand">
+        <div class="brand-mark"></div>
+        <div>
+          <div>Continuity Protocol</div>
+          <div class="tiny">Know your next move</div>
+        </div>
+      </a>
+    </div>
+  </nav>
+
+  <div class="wrap">
+    <div class="page-header">
+      <h1>Build your family's protocol</h1>
+      <p>Tell us about your situation. We'll deliver a personalized crisis protocol to your email within 24 hours.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step" style="opacity:0.5;"><div class="step-num">1</div> Paid</div>
+      <div class="step active"><div class="step-num">2</div> Your info</div>
+      <div class="step" style="opacity:0.5;"><div class="step-num">3</div> Protocol delivered</div>
+    </div>
+
+    <div class="form-section" id="form-section">
+      <div class="form-card">
+        <form id="protocol-form" onsubmit="return submitForm(event);">
+
+          <div class="section-divider">Your contact</div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Full name</label>
+              <input type="text" class="form-input" name="name" required placeholder="Steven Alber" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email</label>
+              <input type="email" class="form-input" name="email" required placeholder="you@email.com" />
+            </div>
+          </div>
+
+          <div class="section-divider">Your location</div>
+
+          <div class="form-group">
+            <label class="form-label">Where do you currently live?</label>
+            <span class="form-hint">City and country</span>
+            <input type="text" class="form-input" name="location" required placeholder="Dubai, UAE" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">How would you describe your location?</label>
+            <select class="form-select" name="location_type" required>
+              <option value="" disabled selected>Select</option>
+              <option value="island">Island or isolated area</option>
+              <option value="coastal_city">Coastal city</option>
+              <option value="inland_city">Inland city</option>
+              <option value="rural">Rural area</option>
+              <option value="transit_hub">Transit hub (Dubai, Singapore, Bangkok)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Nearest international airport</label>
+            <input type="text" class="form-input" name="airport" placeholder="DXB / Dubai International" />
+          </div>
+
+          <div class="section-divider">Your family</div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Adults in household</label>
+              <select class="form-select" name="adults" required>
+                <option value="1">1</option>
+                <option value="2" selected>2</option>
+                <option value="3">3</option>
+                <option value="4+">4+</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Children</label>
+              <select class="form-select" name="children" required>
+                <option value="0">None</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4+">4+</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Ages of children (if any)</label>
+            <input type="text" class="form-input" name="children_ages" placeholder="3 and 5" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Any elderly or mobility-limited family members?</label>
+            <select class="form-select" name="elderly">
+              <option value="no" selected>No</option>
+              <option value="yes_with_us">Yes, living with us</option>
+              <option value="yes_other_country">Yes, in another country</option>
+            </select>
+          </div>
+
+          <div class="section-divider">Travel documents</div>
+
+          <div class="form-group">
+            <label class="form-label">Passports held by household members</label>
+            <span class="form-hint">List all citizenships, e.g. "US + Philippines" or "UK + German"</span>
+            <input type="text" class="form-input" name="passports" required placeholder="US + Philippines" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Current residency/visa status</label>
+            <span class="form-hint">E.g. "UAE residence visa" or "Thai retirement visa" or "Tourist visa 30 days"</span>
+            <input type="text" class="form-input" name="visa_status" placeholder="UAE residence visa, expires Dec 2026" />
+          </div>
+
+          <div class="section-divider">Destinations &amp; exits</div>
+
+          <div class="form-group">
+            <label class="form-label">If you had to leave within 48 hours, where would you go?</label>
+            <span class="form-hint">Preferred safe destination for 7–30 days</span>
+            <input type="text" class="form-input" name="destination_1" required placeholder="Manila, Philippines" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Backup destination (if first is unavailable)</label>
+            <input type="text" class="form-input" name="destination_2" placeholder="Bangkok, Thailand" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Do you have family or contacts at your destination?</label>
+            <select class="form-select" name="destination_contacts">
+              <option value="yes">Yes, family or close contacts</option>
+              <option value="some">Some contacts, not close</option>
+              <option value="no" selected>No one</option>
+            </select>
+          </div>
+
+          <div class="section-divider">Health &amp; medications</div>
+
+          <div class="form-group">
+            <label class="form-label">Any recurring medications?</label>
+            <span class="form-hint">We need to know if medication continuity affects your exit timeline. No need to be specific — just category.</span>
+            <select class="form-select" name="medications">
+              <option value="none" selected>None</option>
+              <option value="common">Yes, common (available in most countries)</option>
+              <option value="specialized">Yes, specialized (may be hard to get abroad)</option>
+              <option value="children">Children have medication needs</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">How many days of medication supply do you typically have?</label>
+            <select class="form-select" name="med_supply">
+              <option value="na" selected>Not applicable</option>
+              <option value="7">About a week</option>
+              <option value="30">About a month</option>
+              <option value="90">3 months+</option>
+            </select>
+          </div>
+
+          <div class="section-divider">Financial access</div>
+
+          <div class="form-group">
+            <label class="form-label">How do you primarily access money abroad?</label>
+            <span class="form-hint">Select all that apply mentally — but tell us your primary method</span>
+            <select class="form-select" name="financial_access">
+              <option value="international_cards">International credit/debit cards (Visa, MC)</option>
+              <option value="local_bank">Local bank account in current country</option>
+              <option value="wise_revolut">Wise, Revolut, or similar</option>
+              <option value="cash">Primarily cash</option>
+              <option value="crypto">Crypto</option>
+              <option value="mixed" selected>Mix of several methods</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Do you have a backup payment method if your primary fails?</label>
+            <select class="form-select" name="backup_payment">
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+              <option value="not_sure" selected>Not sure</option>
+            </select>
+          </div>
+
+          <div class="section-divider">Your biggest concern</div>
+
+          <div class="form-group">
+            <label class="form-label">What is your #1 concern right now about your family's situation?</label>
+            <span class="form-hint">Be specific. This helps us prioritize what your protocol covers first.</span>
+            <textarea class="form-textarea" name="main_concern" required placeholder="I'm worried about getting my kids off this island if flights get cancelled. We only have one airline connecting us to the mainland and fuel prices are rising fast."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Anything else we should know?</label>
+            <span class="form-hint">Pets, business obligations, dual-location family, specific fears — anything relevant.</span>
+            <textarea class="form-textarea" name="additional" placeholder="My mother-in-law is flying from Australia to Estonia this summer and I'm worried about her route through the Gulf hubs." style="min-height: 80px;"></textarea>
+          </div>
+
+          <button type="submit" class="btn-submit">Submit — we'll deliver your protocol within 24h</button>
+
+          <p class="privacy-note">Your data is used only to build your personal protocol. We do not share, sell, or store banking credentials. Encrypted in transit. You can request deletion anytime.</p>
+        </form>
+      </div>
+    </div>
+
+    <!-- CONFIRMATION -->
+    <div class="confirmation" id="confirmation">
+      <div class="check-icon">&#10003;</div>
+      <h2>We're building your protocol</h2>
+      <p>Your personalized family crisis protocol will be delivered to your email within 24 hours.</p>
+      <p style="font-size: 0.9rem;">If your situation is urgent, email us directly at <a href="mailto:protocol@continuityprotocol.io">protocol@continuityprotocol.io</a></p>
+      <p style="margin-top: 24px;"><a href="index.html" style="color: var(--gold);">&larr; Back to Continuity Protocol</a></p>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="wrap">
+      Continuity Protocol — Information and decision-support service. Not insurance, evacuation, or medical advice.
+    </div>
+  </footer>
+
+  <script>
+  function submitForm(e) {
+    e.preventDefault();
+
+    // Collect form data
+    var form = document.getElementById('protocol-form');
+    var data = new FormData(form);
+    var obj = {};
+    data.forEach(function(val, key) { obj[key] = val; });
+
+    // For now: log to console + show confirmation
+    // TODO: Connect to Formspree, email API, or backend
+    console.log('Protocol request:', JSON.stringify(obj, null, 2));
+
+    // Show confirmation
+    document.getElementById('form-section').style.display = 'none';
+    document.getElementById('confirmation').style.display = 'block';
+    document.querySelector('.steps').innerHTML = '<div class="step" style="opacity:0.5;"><div class="step-num">1</div> Paid</div><div class="step" style="opacity:0.5;"><div class="step-num">2</div> Info sent</div><div class="step active"><div class="step-num">3</div> Protocol incoming</div>';
+
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    return false;
+  }
+  </script>
+</body>
+</html>

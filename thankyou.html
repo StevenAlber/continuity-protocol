@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>You're In — The Collapse Briefing</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b1020;
+      --text: #eef2ff;
+      --muted: #aeb8d4;
+      --line: rgba(255,255,255,0.12);
+      --gold: #d5b16b;
+      --gold-2: #f3d191;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+      color: var(--text);
+      background: radial-gradient(circle at top left, rgba(213,177,107,0.16), transparent 22%), radial-gradient(circle at right 15% top 20%, rgba(43,91,181,0.18), transparent 28%), linear-gradient(180deg, #09101d 0%, #0b1020 30%, #0d1427 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      line-height: 1.6;
+    }
+    .card {
+      max-width: 560px;
+      width: 100%;
+      text-align: center;
+    }
+    .check {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(213,177,107,0.2), rgba(213,177,107,0.05));
+      border: 2px solid rgba(213,177,107,0.4);
+      display: grid;
+      place-items: center;
+      margin: 0 auto 28px;
+      animation: scaleIn 0.5s ease forwards;
+    }
+    .check svg {
+      width: 32px;
+      height: 32px;
+      stroke: var(--gold);
+      fill: none;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 40;
+      stroke-dashoffset: 40;
+      animation: draw 0.6s ease 0.3s forwards;
+    }
+    @keyframes scaleIn {
+      from { transform: scale(0.7); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    @keyframes draw {
+      to { stroke-dashoffset: 0; }
+    }
+    h1 {
+      font-family: 'EB Garamond', serif;
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      font-weight: 700;
+      margin: 0 0 12px;
+      letter-spacing: -0.03em;
+      opacity: 0;
+      animation: fadeUp 0.6s ease 0.2s forwards;
+    }
+    h1 em { font-style: italic; color: var(--gold); }
+    .subtitle {
+      font-size: 1.1rem;
+      color: var(--muted);
+      margin: 0 0 36px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease 0.35s forwards;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .steps {
+      text-align: left;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 28px;
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease 0.5s forwards;
+    }
+    .step {
+      display: grid;
+      grid-template-columns: 36px 1fr;
+      gap: 14px;
+      align-items: start;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .step:last-child { border-bottom: none; }
+    .step-num {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: rgba(213,177,107,0.1);
+      border: 1px solid rgba(213,177,107,0.2);
+      display: grid;
+      place-items: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--gold);
+    }
+    .step h3 {
+      font-size: 1rem;
+      margin: 0 0 4px;
+      font-weight: 600;
+    }
+    .step p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+    .step-active h3 { color: var(--gold-2); }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px 32px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 1.05rem;
+      font-family: inherit;
+      border: none;
+      cursor: pointer;
+      transition: all 0.18s ease;
+      text-decoration: none;
+      width: 100%;
+      background: linear-gradient(135deg, var(--gold), var(--gold-2));
+      color: #22170a;
+      box-shadow: 0 14px 40px rgba(213,177,107,0.28);
+      opacity: 0;
+      animation: fadeUp 0.6s ease 0.65s forwards;
+    }
+    .btn:hover { transform: translateY(-1px); box-shadow: 0 18px 50px rgba(213,177,107,0.38); filter: brightness(1.06); }
+    .receipt {
+      margin-top: 20px;
+      font-size: 0.82rem;
+      color: rgba(174,184,212,0.5);
+      opacity: 0;
+      animation: fadeUp 0.6s ease 0.75s forwards;
+    }
+    .receipt a { color: var(--gold); text-decoration: none; border-bottom: 1px solid rgba(213,177,107,0.3); }
+    .footer-note {
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      font-size: 0.82rem;
+      color: rgba(174,184,212,0.4);
+      max-width: 560px;
+      text-align: center;
+      opacity: 0;
+      animation: fadeUp 0.6s ease 0.85s forwards;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="check">
+      <svg viewBox="0 0 24 24"><polyline points="6 12 10 16 18 8"/></svg>
+    </div>
+
+    <h1>You're in.<br/><em>The Collapse Briefing</em></h1>
+    <p class="subtitle">Payment confirmed. Here's what happens next.</p>
+
+    <div class="steps">
+      <div class="step step-active">
+        <div class="step-num">1</div>
+        <div>
+          <h3>Fill in your situation (2 minutes)</h3>
+          <p>Tell us where you live, your family structure, and what matters most. This lets us tailor the briefing materials to your reality — not generic advice.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div>
+          <h3>Receive your briefing package</h3>
+          <p>5 video briefings + 5 operational documents delivered to your email. Typically within 24 hours.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div>
+          <h3>Act on the sequence</h3>
+          <p>The 90-day calendar tells you what to do first, second, and third. No guesswork. No panic. Just the next move.</p>
+        </div>
+      </div>
+    </div>
+
+    <a href="form.html" class="btn" aria-label="Fill in your intake form">Complete Your Intake Form →</a>
+
+    <p class="receipt">Stripe receipt sent to your email. Questions? <a href="mailto:hello@planbefore.app">hello@planbefore.app</a></p>
+  </div>
+
+  <div class="footer-note">
+    The Collapse Briefing is an intelligence product — advisory only. Not financial, legal, or medical advice.<br/>
+    © 2026 KRYONIS Sovereign Systems Limited · Hong Kong
+  </div>
+
+</body>
+</html>

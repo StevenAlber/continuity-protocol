@@ -23,6 +23,7 @@
 
   <link rel="canonical" href="https://planbefore.app/" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -50,6 +51,7 @@
     }
     a { color: inherit; text-decoration: none; }
     .wrap { width: min(var(--max), calc(100% - 32px)); margin: 0 auto; }
+    *:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
 
     /* NAV */
     .nav { position: sticky; top: 0; z-index: 20; backdrop-filter: blur(16px); background: rgba(7,11,22,0.62); border-bottom: 1px solid var(--line); }
@@ -60,18 +62,24 @@
     .brand-mark::before { width: 18px; height: 18px; }
     .brand-mark::after { width: 8px; height: 8px; }
     .nav-links { display: flex; align-items: center; gap: 22px; color: var(--muted); font-size: 0.95rem; }
+    .nav-links a:not(.btn) { transition: color 0.2s ease; position: relative; }
+    .nav-links a:not(.btn):hover { color: var(--text); }
+    .nav-links a:not(.btn)::after { content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 1px; background: var(--gold); transform: scaleX(0); transition: transform 0.2s ease; }
+    .nav-links a:not(.btn):hover::after { transform: scaleX(1); }
     .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 14px 20px; border-radius: 999px; font-weight: 700; border: 1px solid transparent; transition: all .18s ease; cursor: pointer; font-family: inherit; }
     .btn-nav { padding: 9px 16px; font-size: 0.85rem; font-weight: 600; }
     .btn:hover { transform: translateY(-1px); }
     .btn-primary { background: linear-gradient(135deg, var(--gold), var(--gold-2)); color: #22170a; box-shadow: 0 14px 40px rgba(213,177,107,0.28); }
+    .btn-primary:hover { box-shadow: 0 18px 50px rgba(213,177,107,0.38); filter: brightness(1.06); }
     .btn-secondary { background: rgba(255,255,255,0.04); color: var(--text); border-color: var(--line); }
+    .btn-secondary:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.2); }
 
     /* HERO */
     .hero { padding: 60px 0 40px; }
     .eyebrow { display: flex; gap: 10px; align-items: flex-start; padding: 10px 14px; border-radius: 16px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); color: #d7def5; font-size: 0.85rem; margin-bottom: 20px; line-height: 1.4; max-width: fit-content; }
     .eyebrow > span:first-child { width: 8px; height: 8px; min-width: 8px; flex-shrink: 0; border-radius: 50%; background: var(--red); box-shadow: 0 0 0 5px rgba(181,74,74,0.2); margin-top: 4px; animation: pulse 2s ease-in-out infinite; }
     @keyframes pulse { 0%, 100% { box-shadow: 0 0 0 4px rgba(181,74,74,0.2); } 50% { box-shadow: 0 0 0 8px rgba(181,74,74,0.05); } }
-    #alert-text { color: #ffb8b8; }
+    #alert-text { color: #ffc4c4; }
     h1 { font-family: 'EB Garamond', serif; font-size: clamp(2.9rem, 5vw, 5.5rem); line-height: 0.95; margin: 0 0 24px; letter-spacing: -0.04em; }
     h1 em { font-style: italic; color: var(--gold); }
     .hero p.lead { font-size: 1.18rem; color: var(--muted); max-width: 680px; margin: 0 0 28px; line-height: 1.6; }
@@ -106,10 +114,10 @@
 
     /* MODULES */
     .module { padding: 24px 28px; border-radius: 22px; background: var(--panel); border: 1px solid var(--line); }
-    .module-num { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
-    .module h3 { font-size: 1.25rem; margin: 0 0 8px; }
-    .module p { margin: 0; color: var(--muted); line-height: 1.6; }
-    .modules-grid { display: grid; gap: 16px; }
+    .module-num { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+    .module h3 { font-size: 1.3rem; margin: 0 0 12px; }
+    .module p { margin: 0; color: var(--muted); line-height: 1.65; }
+    .modules-grid { display: grid; gap: 20px; }
 
     /* BRIEFING PRICE CARD */
     .briefing-price { text-align: center; padding: 80px 0; border-top: 1px solid var(--line); }
@@ -202,12 +210,12 @@
     <!-- HERO -->
     <section class="hero">
       <div class="wrap">
-        <div class="eyebrow" id="live-alert"><span></span><span id="alert-text">Iran declares parks, resorts and tourist zones worldwide as targets</span></div>
+        <div class="eyebrow" id="live-alert" role="status" aria-live="polite"><span></span><span id="alert-text">Iran declares parks, resorts and tourist zones worldwide as targets</span></div>
         <h1>The Collapse<br/><em>Briefing</em></h1>
         <p class="lead">Your bank works until it doesn't. Your passport works until it doesn't. Your city works until it doesn't.<br/><br/><strong>This is the operational briefing for what to do before that moment — not after.</strong></p>
         <div class="hero-actions">
-          <a href="#briefing" class="btn btn-primary">Get the Briefing — €297</a>
-          <a href="#protocols" class="btn btn-secondary">Or start with a personal protocol</a>
+          <a href="#briefing" class="btn btn-primary" aria-label="Get the Collapse Briefing for 297 euros">Get the Briefing — €297</a>
+          <a href="#protocols" class="btn btn-secondary" aria-label="Start with a personal crisis protocol from 9 dollars">Or start with a personal protocol</a>
         </div>
       </div>
     </section>
@@ -245,7 +253,7 @@
           "Expats organized $1,000 taxi rides to Oman through WhatsApp groups. A retired US Army Major General said two embassy contacts provided no useful information. 11,600 tourists were stranded in Bali with no advance notice."
           <cite>Reuters, New York Times, Jakarta Post — March 2026</cite>
         </div>
-        <div class="quote-block" style="margin-top: 32px; border-left-color: rgba(181,74,74,0.5); color: #ffb8b8;">
+        <div class="quote-block" style="margin-top: 32px; border-left-color: rgba(181,74,74,0.5); color: #ffcece;">
           "From now on, even parks, recreational areas and tourist destinations anywhere in the world will no longer be safe for you."
           <cite>Brigadier General Abolfazl Shekarchi, Iranian Armed Forces — March 20, 2026</cite>
         </div>
@@ -316,7 +324,7 @@
               <li>All future updates to the April 2026 edition</li>
             </ul>
             <!-- REPLACE with your Stripe Payment Link for €297 -->
-            <a href="https://buy.stripe.com/YOUR_297_PAYMENT_LINK" class="btn btn-primary" style="width: 100%; padding: 18px 24px; font-size: 1.05rem;">Get the Collapse Briefing →</a>
+            <a href="https://buy.stripe.com/YOUR_297_PAYMENT_LINK" class="btn btn-primary" style="width: 100%; padding: 18px 24px; font-size: 1.05rem;" aria-label="Purchase the Collapse Briefing for 297 euros via Stripe">Get the Collapse Briefing →</a>
             <p style="font-size: 0.78rem; color: var(--muted); margin-top: 14px;">Secure payment via Stripe · Delivered instantly to your email</p>
           </div>
         </div>
@@ -520,8 +528,8 @@
     });
   })();
 
-  // GDELT Alert Ticker
-  (function() {
+  // GDELT Alert Ticker (deferred)
+  setTimeout(function() {
     var alertEl = document.getElementById('alert-text');
     if (!alertEl) return;
     var fallbacks = [
@@ -561,3 +569,13 @@
               best = best.replace(/^[^:\-|]+[\-|:]\s*/i, '').trim();
               if (best.length > 80) best = best.substring(0, 77) + '...';
               best = best.charAt(0).toUpperCase() + best.slice(1);
+               if (best.length > 15) { alertEl.textContent = best; return; }
+            }
+          }
+          useFallback();
+        }).catch(function() { useFallback(); });
+    } catch(e) { useFallback(); }
+  }, 100);
+  </script>
+</body>
+</html>

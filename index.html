@@ -218,7 +218,7 @@
         <div class="number-grid">
           <div class="big-number">130</div>
           <div class="number-text">
-            <p><strong>armed conflicts are active on Earth right now.</strong></p>
+            <h2 style="font-family: 'EB Garamond', serif; font-size: clamp(1.8rem, 3.5vw, 2.8rem); margin: 0 0 16px; letter-spacing: -0.02em; color: var(--text); line-height: 1.15;">armed conflicts are active on Earth right now.</h2>
             <p>That is the official count from the International Committee of the Red Cross — the institution that classifies armed conflicts under international humanitarian law. Not a think tank estimate. Not a media headline.</p>
             <p>This is <strong>twice the number from 15 years ago</strong>. Nearly <strong>four times the number from 30 years ago</strong>. The highest since the Second World War.</p>
             <p>The Uppsala Conflict Data Program counts 61 state-linked conflicts in 2024 — the most since they began recording in 1946. ACLED tracked over 200,000 individual violent events in 2025.</p>
@@ -480,13 +480,13 @@
   <footer class="footer">
     <div class="wrap">
       <div style="display:flex; justify-content:space-between; gap:18px; flex-wrap:wrap; align-items:flex-start;">
-        <div><strong>PlanBefore</strong><br/><span class="muted">Know your next move</span><br/><a href="mailto:hello@planbefore.app" style="color:var(--gold); font-size:0.85rem;">hello@planbefore.app</a> &nbsp;|&nbsp; <a href="terms.html" style="color:var(--muted); font-size:0.85rem;">Terms</a></div>
+        <div><strong>PlanBefore</strong><br/><span class="muted">Know your next move</span><br/><a href="/cdn-cgi/l/email-protection#18707d74747758687479767a7d7e776a7d36796868" style="color:var(--gold); font-size:0.85rem;"><span class="__cf_email__" data-cfemail="046c6168686b447468656a6661626b76612a657474">[email&#160;protected]</span></a> &nbsp;|&nbsp; <a href="terms.html" style="color:var(--muted); font-size:0.85rem;">Terms</a></div>
         <div class="micro" style="max-width:720px;">PlanBefore provides information and decision-support services for internationally mobile households. Not insurance, evacuation, medical advice, or a guarantee of route passability. Advisory only. Verify independently before acting.</div>
       </div>
     </div>
   </footer>
 
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // Newsletter AJAX
   (function() {
     var form = document.getElementById('newsletter-form');
@@ -542,7 +542,7 @@
     }
     try {
       fetch('https://api.gdeltproject.org/api/v2/doc/doc?query=' +
-        encodeURIComponent('Iran crisis travel flight evacuation conflict') +
+        encodeURIComponent('Iran crisis travel flight evacuation conflict sourcelang:eng') +
         '&mode=ArtList&maxrecords=10&format=json&sort=DateDesc&timespan=3d', {mode:'cors'})
         .then(function(r) {
           if (!r.ok) throw new Error('HTTP ' + r.status);
@@ -561,13 +561,3 @@
               best = best.replace(/^[^:\-|]+[\-|:]\s*/i, '').trim();
               if (best.length > 80) best = best.substring(0, 77) + '...';
               best = best.charAt(0).toUpperCase() + best.slice(1);
-              if (best.length > 15) { alertEl.textContent = best; return; }
-            }
-          }
-          useFallback();
-        }).catch(function() { useFallback(); });
-    } catch(e) { useFallback(); }
-  })();
-  </script>
-</body>
-</html>

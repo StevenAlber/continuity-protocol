@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Collapse Briefing — What You Get</title>
+  <meta name="description" content="5 video briefings + 5 operational documents. Decision sequences, jurisdiction grids, and a 90-day action calendar for families navigating systemic breakdown. $297." />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="canonical" href="https://planbefore.app/briefing.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: rgba(255,255,255,0.06);
+      --text: #eef2ff;
+      --muted: #aeb8d4;
+      --line: rgba(255,255,255,0.12);
+      --gold: #d5b16b;
+      --gold-2: #f3d191;
+      --red: #b54a4a;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+      color: var(--text);
+      background: radial-gradient(circle at top left, rgba(213,177,107,0.16), transparent 22%), radial-gradient(circle at right 15% top 20%, rgba(43,91,181,0.18), transparent 28%), linear-gradient(180deg, #09101d 0%, #0b1020 30%, #0d1427 100%);
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    .wrap { width: min(780px, calc(100% - 32px)); margin: 0 auto; }
+    *:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
+
+    /* NAV */
+    .nav { position: sticky; top: 0; z-index: 20; backdrop-filter: blur(16px); background: rgba(7,11,22,0.62); border-bottom: 1px solid var(--line); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 64px; }
+    .back { display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: 0.9rem; transition: color 0.2s; }
+    .back:hover { color: var(--text); }
+    .back svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; }
+    .nav-brand { font-weight: 700; font-size: 0.9rem; }
+    .tiny { font-size: 0.78rem; color: #c4cde5; }
+
+    /* HERO */
+    .hero { padding: 48px 0 36px; }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: rgba(213,177,107,0.1);
+      border: 1px solid rgba(213,177,107,0.25);
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+    .tag span { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
+    h1 {
+      font-family: 'EB Garamond', serif;
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      font-weight: 700;
+      line-height: 1.05;
+      margin: 0 0 16px;
+      letter-spacing: -0.03em;
+    }
+    h1 em { font-style: italic; color: var(--gold); }
+    .hero-sub { font-size: 1.1rem; color: var(--muted); max-width: 600px; }
+    .hero-sub strong { color: var(--text); font-weight: 600; }
+
+    /* SECTIONS */
+    section { padding: 40px 0; border-top: 1px solid rgba(255,255,255,0.06); }
+    h2 {
+      font-family: 'EB Garamond', serif;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 700;
+      margin: 0 0 16px;
+      letter-spacing: -0.02em;
+    }
+    h3 { font-size: 1.15rem; margin: 0 0 8px; font-weight: 600; }
+    p { margin: 0; }
+    p + p { margin-top: 14px; }
+
+    /* THE PROBLEM */
+    .problem-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 20px;
+    }
+    .problem-card {
+      padding: 20px;
+      border-radius: 16px;
+      background: rgba(181,74,74,0.06);
+      border: 1px solid rgba(181,74,74,0.15);
+    }
+    .problem-card h3 { color: #ffcece; font-size: 1rem; }
+    .problem-card p { color: var(--muted); font-size: 0.9rem; }
+
+    /* MODULES */
+    .module {
+      padding: 24px;
+      border-radius: 18px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      margin-bottom: 16px;
+    }
+    .module-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+    .module h3 { font-size: 1.2rem; margin-bottom: 10px; }
+    .module p { color: var(--muted); font-size: 0.95rem; line-height: 1.65; }
+
+    /* HOW IT WORKS */
+    .step {
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 18px;
+      align-items: start;
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .step:last-child { border-bottom: none; }
+    .step-num {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: rgba(213,177,107,0.1);
+      border: 1px solid rgba(213,177,107,0.2);
+      display: grid;
+      place-items: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--gold);
+    }
+    .step h3 { margin-bottom: 6px; }
+    .step p { color: var(--muted); font-size: 0.92rem; }
+
+    /* ANTI-PITCH */
+    .anti-grid { margin-top: 20px; }
+    .anti-item {
+      display: flex;
+      gap: 14px;
+      padding: 10px 0;
+      align-items: baseline;
+    }
+    .anti-x {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      color: #ff8888;
+      flex-shrink: 0;
+    }
+    .anti-check {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+    .anti-item p { color: var(--muted); font-size: 0.95rem; }
+
+    /* QUOTE */
+    .quote-block {
+      border-left: 3px solid rgba(213,177,107,0.4);
+      padding: 20px 0 20px 24px;
+      margin: 32px 0;
+    }
+    .quote-block p {
+      font-family: 'EB Garamond', serif;
+      font-size: 1.25rem;
+      font-style: italic;
+      line-height: 1.5;
+      color: var(--gold);
+    }
+
+    /* PRICE CARD */
+    .price-section { padding: 48px 0; text-align: center; }
+    .price-card {
+      background: linear-gradient(180deg, rgba(213,177,107,0.08), rgba(255,255,255,0.03));
+      border: 1px solid rgba(213,177,107,0.25);
+      border-radius: 24px;
+      padding: 40px 32px;
+      max-width: 480px;
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+    }
+    .price-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    .price-amount {
+      font-family: 'EB Garamond', serif;
+      font-size: 3.4rem;
+      font-weight: 700;
+      color: var(--gold-2);
+      letter-spacing: -0.03em;
+      margin: 12px 0 6px;
+    }
+    .price-note { font-size: 0.85rem; color: var(--muted); margin-bottom: 24px; }
+    ul.clean { padding: 0; margin: 0; list-style: none; display: grid; gap: 10px; text-align: left; }
+    ul.clean li { color: var(--muted); padding-left: 22px; position: relative; font-size: 0.92rem; }
+    ul.clean li::before { content: "→"; position: absolute; left: 0; top: -1px; color: var(--gold); }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px 32px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 1.05rem;
+      font-family: inherit;
+      border: none;
+      cursor: pointer;
+      transition: all 0.18s ease;
+      text-decoration: none;
+      width: 100%;
+      background: linear-gradient(135deg, var(--gold), var(--gold-2));
+      color: #22170a;
+      box-shadow: 0 14px 40px rgba(213,177,107,0.28);
+    }
+    .btn:hover { transform: translateY(-1px); box-shadow: 0 18px 50px rgba(213,177,107,0.38); filter: brightness(1.06); }
+
+    /* GUARANTEE */
+    .guarantee {
+      margin-top: 24px;
+      padding: 20px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .guarantee p { font-size: 0.88rem; color: var(--muted); text-align: center; }
+    .guarantee strong { color: var(--text); }
+
+    /* FAQ */
+    .faq-item {
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-item h3 { color: var(--text); margin-bottom: 8px; }
+    .faq-item p { color: var(--muted); font-size: 0.92rem; }
+
+    /* FOOTER */
+    .footer {
+      padding: 32px 0;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      font-size: 0.82rem;
+      color: rgba(174,184,212,0.4);
+      text-align: center;
+    }
+    .footer a { color: var(--gold); text-decoration: none; }
+
+    /* RESPONSIVE */
+    @media (max-width: 640px) {
+      h1 { font-size: 2rem; }
+      .problem-grid { grid-template-columns: 1fr; }
+      .price-card { padding: 32px 24px; }
+      .step { grid-template-columns: 40px 1fr; gap: 14px; }
+      .step-num { width: 40px; height: 40px; font-size: 0.82rem; border-radius: 10px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <a href="./" class="back">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+        PlanBefore
+      </a>
+      <span class="nav-brand"><span class="tiny">The Collapse Briefing</span></span>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero" style="border: none;">
+      <div class="wrap">
+        <div class="tag"><span></span> Premium Intelligence Package</div>
+        <h1>The Collapse<br/><em>Briefing</em></h1>
+        <p class="hero-sub">5 video briefings + 5 operational documents built for families and founders who need <strong>a decision sequence, not another opinion.</strong></p>
+      </div>
+    </section>
+
+    <!-- THE PROBLEM -->
+    <section>
+      <div class="wrap">
+        <h2>You already feel it. Here's the math behind the feeling.</h2>
+        <p style="color: var(--muted); margin-bottom: 20px;">The International Committee of the Red Cross counts 130 active armed conflicts worldwide — the highest since 1945. That number touches everything downstream.</p>
+        <div class="problem-grid">
+          <div class="problem-card">
+            <h3>Banking</h3>
+            <p>Jurisdictions freezing accounts, changing compliance rules, restricting transfers with days of notice.</p>
+          </div>
+          <div class="problem-card">
+            <h3>Mobility</h3>
+            <p>18,000+ flights cancelled in the Gulf crisis first week. Corridors that were open Tuesday close by Friday.</p>
+          </div>
+          <div class="problem-card">
+            <h3>Supply chains</h3>
+            <p>Hormuz shipping insurance tripled. Oil up 54% in 30 days. Energy grids under pressure before the next shock.</p>
+          </div>
+          <div class="problem-card">
+            <h3>Jurisdiction</h3>
+            <p>Tax rules change overnight. Residency programs tighten. What was a safe base 18 months ago isn't now.</p>
+          </div>
+        </div>
+
+        <div class="quote-block">
+          <p>The most dangerous position in 2026 is not being in the wrong country. It's having no plan for when the right one stops working.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHAT'S INSIDE -->
+    <section>
+      <div class="wrap">
+        <h2>What's inside the briefing</h2>
+        <p style="color: var(--muted); margin-bottom: 24px;">Each module is a video briefing (15–20 min) paired with a working operational document you can use immediately.</p>
+
+        <div class="module">
+          <div class="module-num">Module 01 · Video + PDF</div>
+          <h3>The Real Risk Map</h3>
+          <p>Not which countries are "dangerous" — every country is dangerous in some dimension. This maps which specific risks are accelerating in your likely jurisdictions: banking seizure, tax regime shift, mobility restriction, infrastructure failure, currency event. With timelines, not speculation.</p>
+        </div>
+
+        <div class="module">
+          <div class="module-num">Module 02 · Video + Decision Flowchart</div>
+          <h3>The Decision Sequence</h3>
+          <p>The exact order of operations for someone who has assets, family, and business exposure across unstable ground. What to secure first. What can wait. What looks urgent but isn't. What looks fine but will lock you in. This is the core of the briefing — the sequence that replaces panic with method.</p>
+        </div>
+
+        <div class="module">
+          <div class="module-num">Module 03 · Video + Jurisdiction Matrix</div>
+          <h3>The Base Selection Grid</h3>
+          <p>Not "best countries to move to." Instead: which combinations of two or three bases give you maximum operational continuity if any single one fails. Banking, schooling, healthcare, legal structure, exit routes — mapped against your risk profile.</p>
+        </div>
+
+        <div class="module">
+          <div class="module-num">Module 04 · Video + Assessment Framework</div>
+          <h3>The Trust Filter</h3>
+          <p>Which categories of service providers — lawyers, banks, trustees, relocation agents — are actually functional right now. And which are selling 2019 solutions into a 2026 world. How to verify before you commit your family's safety to someone's sales pitch.</p>
+        </div>
+
+        <div class="module">
+          <div class="module-num">Module 05 · PDF Action Document</div>
+          <h3>The 90-Day Operational Calendar</h3>
+          <p>Week-by-week: what to move, what to open, what to close, what to test, what to digitize, who to call. Built for someone who has a life and a business and cannot stop everything to "figure this out." This is your executable plan.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section>
+      <div class="wrap">
+        <h2>How it works</h2>
+        <div class="step">
+          <div class="step-num">1</div>
+          <div>
+            <h3>Purchase the briefing</h3>
+            <p>One-time payment of $297. No subscription, no upsell, no drip content. You get everything immediately.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div>
+            <h3>Fill in your situation (2 minutes)</h3>
+            <p>After payment, a short intake form asks about your location, family structure, and what concerns you most. This lets us tailor your materials — not generic advice for "someone somewhere."</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div>
+            <h3>Receive the full package</h3>
+            <p>5 video briefings + 5 operational documents, delivered to your email within 24 hours. Watch in any order, but we recommend the Decision Sequence first.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div>
+            <h3>Act on the 90-day calendar</h3>
+            <p>Week 1 starts the day you receive it. Each week has specific, concrete actions. Not "think about your options." Actual steps: open this, close that, call here, digitize this.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHAT THIS IS NOT -->
+    <section>
+      <div class="wrap">
+        <h2>What this is — and what it isn't</h2>
+        <div class="anti-grid">
+          <div class="anti-item"><span class="anti-x">✕</span><p>Not a doomsday fantasy or collapse entertainment</p></div>
+          <div class="anti-item"><span class="anti-x">✕</span><p>Not crypto, gold bugs, or asset shilling of any kind</p></div>
+          <div class="anti-item"><span class="anti-x">✕</span><p>Not a "move to Portugal" lifestyle pitch</p></div>
+          <div class="anti-item"><span class="anti-x">✕</span><p>Not financial, legal, or medical advice</p></div>
+          <div class="anti-item"><span class="anti-x">✕</span><p>Not from someone who's never actually relocated under pressure</p></div>
+          <div style="height: 16px;"></div>
+          <div class="anti-item"><span class="anti-check">→</span><p><strong style="color:var(--text);">An intelligence product.</strong> Designed to sharpen your thinking, compress your decision time, and give you a sequence to follow when the news stops being useful.</p></div>
+          <div class="anti-item"><span class="anti-check">→</span><p><strong style="color:var(--text);">Built from lived experience.</strong> 15 years operating across Hong Kong, Dubai, Southeast Asia, Latin America, and Europe. Not theory — pattern recognition from actually doing it.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHO IS THIS FOR -->
+    <section>
+      <div class="wrap">
+        <h2>Who this is for</h2>
+        <p style="color: var(--muted);">Founders, family principals, senior professionals, and capital holders who have assets that matter, a family that depends on their decisions, and a growing feeling that the ground they're standing on is not as solid as it was two years ago.</p>
+        <p style="color: var(--muted); margin-top: 14px;">You are not panicking. You are the person in the room who sees it first and wants to act while others are still debating whether it's real.</p>
+        <p style="color: var(--muted); margin-top: 14px;">If you've already been thinking about jurisdictional redundancy, banking resilience, family mobility, or "what happens if this country stops working" — this briefing gives you the operational framework to stop thinking and start executing.</p>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section>
+      <div class="wrap">
+        <h2>Questions</h2>
+        <div class="faq-item">
+          <h3>When do I receive the briefing?</h3>
+          <p>Typically within 24 hours. After payment, you fill a short intake form. We use your answers to annotate the briefing materials for your specific situation before sending.</p>
+        </div>
+        <div class="faq-item">
+          <h3>What format are the videos?</h3>
+          <p>Private video links (streamable, downloadable) + PDF documents. No app required, no login wall. Watch on any device, save offline.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Is this personalized to my situation?</h3>
+          <p>The core briefing content is the same for all buyers. Your intake answers let us add situation-specific notes and flag which modules are most urgent for you. It's not a generic blast — but it's also not a $5,000 private consultation.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Is this financial or legal advice?</h3>
+          <p>No. This is an intelligence product — decision-support information to sharpen your thinking. You should always verify specifics with qualified professionals in your jurisdiction before acting.</p>
+        </div>
+        <div class="faq-item">
+          <h3>What if I want deeper, private help?</h3>
+          <p>After the briefing, you can inquire about private coordination retainers. Start with the briefing — it tells you whether the deeper layer is something you need.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICE -->
+    <section class="price-section">
+      <div class="wrap">
+        <div class="price-card">
+          <div class="tiny" style="color: var(--gold);">Complete Collapse Briefing</div>
+          <div class="price-amount">$297</div>
+          <div class="price-note">One-time payment · Immediate access · No subscription</div>
+          <ul class="clean" style="margin-bottom: 28px;">
+            <li>5 video briefings (~90 min total)</li>
+            <li>5 operational PDF documents</li>
+            <li>Decision flowcharts + jurisdiction grids</li>
+            <li>90-day action calendar</li>
+            <li>Trust filter assessment framework</li>
+            <li>Situation-specific notes based on your intake</li>
+            <li>All future updates to the April 2026 edition</li>
+          </ul>
+          <a href="https://buy.stripe.com/8x2aEX01fb9H2eY3tSasg0f" class="btn" aria-label="Purchase the Collapse Briefing for 297 dollars">Get the Collapse Briefing →</a>
+          <p style="font-size: 0.78rem; color: var(--muted); margin-top: 14px;">Secure payment via Stripe · Delivered to your email within 24h</p>
+        </div>
+
+        <div class="guarantee">
+          <p><strong>No-nonsense policy:</strong> If the briefing doesn't change how you think about your family's operational readiness, write to us within 7 days. We'll make it right.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <p>PlanBefore · KRYONIS Sovereign Systems Limited · Hong Kong</p>
+      <p style="margin-top: 6px;">Advisory only. Not insurance, evacuation, or a guarantee of route passability. <a href="mailto:hello@planbefore.app">hello@planbefore.app</a></p>
+    </div>
+  </footer>
+
+</body>
+</html>
